@@ -12,10 +12,10 @@ unit iikoNet_Service_Api_Front_v2_Client_TLB;
 // ************************************************************************ //
 
 // PASTLWTR : 1.2
-// File generated on 16.01.2015 15:02:24 from Type Library described below.
+// File generated on 23.01.2015 20:28:04 from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: F:\iikocard-review\dev\CardService\Api\Front\v2\iikoNet.Service.Api.Front.v2.Client\bin\Debug\iikoNet.Service.Api.Front.v2.Client.tlb (1)
+// Type Lib: F:\pos-api-sdk\samples\delphi\iikoNet.Service.Api.Front.v2.Client.tlb (1)
 // LIBID: {730D7675-109C-45AF-987C-64F46561454C}
 // LCID: 0
 // Helpfile: 
@@ -57,6 +57,7 @@ const
   IID_IAppliedDiscount: TGUID = '{0C703C88-DDA1-4531-9FE8-13341FCCD4D7}';
   IID_ICancelledOrderItem: TGUID = '{D5354BB7-8872-4B6A-81A2-EB589C59B304}';
   IID_ILoyaltyOperation: TGUID = '{18D27725-489C-4AD3-866C-1BAAF7DD09EC}';
+  IID_ILoyaltyProgramResult: TGUID = '{FC21E48A-DF02-4912-A6FC-E70D63A009E8}';
   IID_ILoyaltyResult: TGUID = '{0E51AC50-CB03-4172-9E54-50C791F115DC}';
   IID_IOrder: TGUID = '{BF0CFEFD-A8E3-4276-9252-DE9065EC124E}';
   IID_IOrderItem: TGUID = '{EC83A828-1316-4605-A67C-60DEFE4D3D13}';
@@ -99,6 +100,8 @@ type
   ICancelledOrderItemDisp = dispinterface;
   ILoyaltyOperation = interface;
   ILoyaltyOperationDisp = dispinterface;
+  ILoyaltyProgramResult = interface;
+  ILoyaltyProgramResultDisp = dispinterface;
   ILoyaltyResult = interface;
   ILoyaltyResultDisp = dispinterface;
   IOrder = interface;
@@ -229,15 +232,27 @@ type
 // *********************************************************************//
   IAppliedDiscount = interface(IDispatch)
     ['{0C703C88-DDA1-4531-9FE8-13341FCCD4D7}']
+    function Get_ProgramId: TGUID; safecall;
+    procedure Set_ProgramId(pRetVal: TGUID); safecall;
+    function Get_OperationCode: WideString; safecall;
+    procedure Set_OperationCode(const pRetVal: WideString); safecall;
     function Get_DiscountName: WideString; safecall;
     procedure Set_DiscountName(const pRetVal: WideString); safecall;
     function Get_ProductCode: WideString; safecall;
     procedure Set_ProductCode(const pRetVal: WideString); safecall;
+    function Get_ProductName: WideString; safecall;
+    procedure Set_ProductName(const pRetVal: WideString); safecall;
     function Get_Sum: Double; safecall;
     procedure Set_Sum(pRetVal: Double); safecall;
+    function Get_Comment: WideString; safecall;
+    procedure Set_Comment(const pRetVal: WideString); safecall;
+    property ProgramId: TGUID read Get_ProgramId write Set_ProgramId;
+    property OperationCode: WideString read Get_OperationCode write Set_OperationCode;
     property DiscountName: WideString read Get_DiscountName write Set_DiscountName;
     property ProductCode: WideString read Get_ProductCode write Set_ProductCode;
+    property ProductName: WideString read Get_ProductName write Set_ProductName;
     property Sum: Double read Get_Sum write Set_Sum;
+    property Comment: WideString read Get_Comment write Set_Comment;
   end;
 
 // *********************************************************************//
@@ -247,9 +262,13 @@ type
 // *********************************************************************//
   IAppliedDiscountDisp = dispinterface
     ['{0C703C88-DDA1-4531-9FE8-13341FCCD4D7}']
-    property DiscountName: WideString dispid 0;
-    property ProductCode: WideString dispid 1;
-    property Sum: Double dispid 2;
+    property ProgramId: {??TGUID}OleVariant dispid 0;
+    property OperationCode: WideString dispid 1;
+    property DiscountName: WideString dispid 2;
+    property ProductCode: WideString dispid 3;
+    property ProductName: WideString dispid 4;
+    property Sum: Double dispid 5;
+    property Comment: WideString dispid 6;
   end;
 
 // *********************************************************************//
@@ -285,8 +304,8 @@ type
 // *********************************************************************//
   ILoyaltyOperation = interface(IDispatch)
     ['{18D27725-489C-4AD3-866C-1BAAF7DD09EC}']
-    function Get_OperationId: TGUID; safecall;
-    procedure Set_OperationId(pRetVal: TGUID); safecall;
+    function Get_Code: WideString; safecall;
+    procedure Set_Code(const pRetVal: WideString); safecall;
     function Get_ProductCode: WideString; safecall;
     procedure Set_ProductCode(const pRetVal: WideString); safecall;
     function Get_ProductName: WideString; safecall;
@@ -295,7 +314,7 @@ type
     procedure Set_DiscountSum(pRetVal: Double); safecall;
     function Get_Comment: WideString; safecall;
     procedure Set_Comment(const pRetVal: WideString); safecall;
-    property OperationId: TGUID read Get_OperationId write Set_OperationId;
+    property Code: WideString read Get_Code write Set_Code;
     property ProductCode: WideString read Get_ProductCode write Set_ProductCode;
     property ProductName: WideString read Get_ProductName write Set_ProductName;
     property DiscountSum: Double read Get_DiscountSum write Set_DiscountSum;
@@ -309,11 +328,48 @@ type
 // *********************************************************************//
   ILoyaltyOperationDisp = dispinterface
     ['{18D27725-489C-4AD3-866C-1BAAF7DD09EC}']
-    property OperationId: {??TGUID}OleVariant dispid 0;
+    property Code: WideString dispid 0;
     property ProductCode: WideString dispid 1;
     property ProductName: WideString dispid 2;
     property DiscountSum: Double dispid 3;
     property Comment: WideString dispid 4;
+  end;
+
+// *********************************************************************//
+// Interface: ILoyaltyProgramResult
+// Flags:     (4416) Dual OleAutomation Dispatchable
+// GUID:      {FC21E48A-DF02-4912-A6FC-E70D63A009E8}
+// *********************************************************************//
+  ILoyaltyProgramResult = interface(IDispatch)
+    ['{FC21E48A-DF02-4912-A6FC-E70D63A009E8}']
+    function Get_ProgramId: TGUID; safecall;
+    procedure Set_ProgramId(pRetVal: TGUID); safecall;
+    function Get_OperationCode: WideString; safecall;
+    procedure Set_OperationCode(const pRetVal: WideString); safecall;
+    function Get_Name: WideString; safecall;
+    procedure Set_Name(const pRetVal: WideString); safecall;
+    function Get_TotalDiscount: TDecimal; safecall;
+    procedure Set_TotalDiscount(pRetVal: TDecimal); safecall;
+    function Get_Operations: IResultsCollection; safecall;
+    property ProgramId: TGUID read Get_ProgramId write Set_ProgramId;
+    property OperationCode: WideString read Get_OperationCode write Set_OperationCode;
+    property Name: WideString read Get_Name write Set_Name;
+    property TotalDiscount: TDecimal read Get_TotalDiscount write Set_TotalDiscount;
+    property Operations: IResultsCollection read Get_Operations;
+  end;
+
+// *********************************************************************//
+// DispIntf:  ILoyaltyProgramResultDisp
+// Flags:     (4416) Dual OleAutomation Dispatchable
+// GUID:      {FC21E48A-DF02-4912-A6FC-E70D63A009E8}
+// *********************************************************************//
+  ILoyaltyProgramResultDisp = dispinterface
+    ['{FC21E48A-DF02-4912-A6FC-E70D63A009E8}']
+    property ProgramId: {??TGUID}OleVariant dispid 0;
+    property OperationCode: WideString dispid 1;
+    property Name: WideString dispid 2;
+    property TotalDiscount: {??TDecimal}OleVariant dispid 3;
+    property Operations: IResultsCollection readonly dispid 4;
   end;
 
 // *********************************************************************//
@@ -323,14 +379,12 @@ type
 // *********************************************************************//
   ILoyaltyResult = interface(IDispatch)
     ['{0E51AC50-CB03-4172-9E54-50C791F115DC}']
-    function Get_OperationId: TGUID; safecall;
-    function Get_TotalDiscount: Double; safecall;
     function Get_TotalBonus: Double; safecall;
-    function Get_Operations: IResultsCollection; safecall;
-    property OperationId: TGUID read Get_OperationId;
-    property TotalDiscount: Double read Get_TotalDiscount;
+    function Get_Programs: IResultsCollection; safecall;
+    function Get_AvailableFreeProductCodes: IResultsCollection; safecall;
     property TotalBonus: Double read Get_TotalBonus;
-    property Operations: IResultsCollection read Get_Operations;
+    property Programs: IResultsCollection read Get_Programs;
+    property AvailableFreeProductCodes: IResultsCollection read Get_AvailableFreeProductCodes;
   end;
 
 // *********************************************************************//
@@ -340,10 +394,9 @@ type
 // *********************************************************************//
   ILoyaltyResultDisp = dispinterface
     ['{0E51AC50-CB03-4172-9E54-50C791F115DC}']
-    property OperationId: {??TGUID}OleVariant readonly dispid 0;
-    property TotalDiscount: Double readonly dispid 1;
-    property TotalBonus: Double readonly dispid 2;
-    property Operations: IResultsCollection readonly dispid 3;
+    property TotalBonus: Double readonly dispid 0;
+    property Programs: IResultsCollection readonly dispid 1;
+    property AvailableFreeProductCodes: IResultsCollection readonly dispid 2;
   end;
 
 // *********************************************************************//
