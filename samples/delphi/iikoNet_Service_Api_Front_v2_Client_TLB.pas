@@ -12,10 +12,10 @@ unit iikoNet_Service_Api_Front_v2_Client_TLB;
 // ************************************************************************ //
 
 // PASTLWTR : 1.2
-// File generated on 23.01.2015 20:28:04 from Type Library described below.
+// File generated on 30.01.2015 17:22:13 from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: F:\pos-api-sdk\samples\delphi\iikoNet.Service.Api.Front.v2.Client.tlb (1)
+// Type Lib: F:\pos-api-sdk\bin\Client\iikoNet.Service.Api.Front.v2.Client.tlb (1)
 // LIBID: {730D7675-109C-45AF-987C-64F46561454C}
 // LCID: 0
 // Helpfile: 
@@ -344,17 +344,11 @@ type
     ['{FC21E48A-DF02-4912-A6FC-E70D63A009E8}']
     function Get_ProgramId: TGUID; safecall;
     procedure Set_ProgramId(pRetVal: TGUID); safecall;
-    function Get_OperationCode: WideString; safecall;
-    procedure Set_OperationCode(const pRetVal: WideString); safecall;
     function Get_Name: WideString; safecall;
     procedure Set_Name(const pRetVal: WideString); safecall;
-    function Get_TotalDiscount: TDecimal; safecall;
-    procedure Set_TotalDiscount(pRetVal: TDecimal); safecall;
     function Get_Operations: IResultsCollection; safecall;
     property ProgramId: TGUID read Get_ProgramId write Set_ProgramId;
-    property OperationCode: WideString read Get_OperationCode write Set_OperationCode;
     property Name: WideString read Get_Name write Set_Name;
-    property TotalDiscount: TDecimal read Get_TotalDiscount write Set_TotalDiscount;
     property Operations: IResultsCollection read Get_Operations;
   end;
 
@@ -366,10 +360,8 @@ type
   ILoyaltyProgramResultDisp = dispinterface
     ['{FC21E48A-DF02-4912-A6FC-E70D63A009E8}']
     property ProgramId: {??TGUID}OleVariant dispid 0;
-    property OperationCode: WideString dispid 1;
-    property Name: WideString dispid 2;
-    property TotalDiscount: {??TDecimal}OleVariant dispid 3;
-    property Operations: IResultsCollection readonly dispid 4;
+    property Name: WideString dispid 1;
+    property Operations: IResultsCollection readonly dispid 2;
   end;
 
 // *********************************************************************//
