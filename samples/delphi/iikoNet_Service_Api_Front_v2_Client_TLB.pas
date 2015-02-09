@@ -12,10 +12,10 @@ unit iikoNet_Service_Api_Front_v2_Client_TLB;
 // ************************************************************************ //
 
 // PASTLWTR : 1.2
-// File generated on 30.01.2015 17:22:13 from Type Library described below.
+// File generated on 09.02.2015 19:54:18 from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: F:\pos-api-sdk\bin\Client\iikoNet.Service.Api.Front.v2.Client.tlb (1)
+// Type Lib: D:\PlatiusGithub\pos\bin\Client\iikoNet.Service.Api.Front.v2.Client.tlb (1)
 // LIBID: {730D7675-109C-45AF-987C-64F46561454C}
 // LCID: 0
 // Helpfile: 
@@ -84,6 +84,16 @@ type
 const
   WalletCode_Bonus = $00000000;
   WalletCode_PaymentCard = $00000001;
+
+// Constants for enum OperationType
+type
+  OperationType = TOleEnum;
+const
+  OperationType_Unknown = $00000000;
+  OperationType_Empty = $00000001;
+  OperationType_CancelPayment = $00000002;
+  OperationType_CloseOrder = $00000003;
+  OperationType_Abort = $00000004;
 
 type
 
@@ -236,23 +246,17 @@ type
     procedure Set_ProgramId(pRetVal: TGUID); safecall;
     function Get_OperationCode: WideString; safecall;
     procedure Set_OperationCode(const pRetVal: WideString); safecall;
-    function Get_DiscountName: WideString; safecall;
-    procedure Set_DiscountName(const pRetVal: WideString); safecall;
     function Get_ProductCode: WideString; safecall;
     procedure Set_ProductCode(const pRetVal: WideString); safecall;
     function Get_ProductName: WideString; safecall;
     procedure Set_ProductName(const pRetVal: WideString); safecall;
     function Get_Sum: Double; safecall;
     procedure Set_Sum(pRetVal: Double); safecall;
-    function Get_Comment: WideString; safecall;
-    procedure Set_Comment(const pRetVal: WideString); safecall;
     property ProgramId: TGUID read Get_ProgramId write Set_ProgramId;
     property OperationCode: WideString read Get_OperationCode write Set_OperationCode;
-    property DiscountName: WideString read Get_DiscountName write Set_DiscountName;
     property ProductCode: WideString read Get_ProductCode write Set_ProductCode;
     property ProductName: WideString read Get_ProductName write Set_ProductName;
     property Sum: Double read Get_Sum write Set_Sum;
-    property Comment: WideString read Get_Comment write Set_Comment;
   end;
 
 // *********************************************************************//
@@ -264,11 +268,9 @@ type
     ['{0C703C88-DDA1-4531-9FE8-13341FCCD4D7}']
     property ProgramId: {??TGUID}OleVariant dispid 0;
     property OperationCode: WideString dispid 1;
-    property DiscountName: WideString dispid 2;
-    property ProductCode: WideString dispid 3;
-    property ProductName: WideString dispid 4;
-    property Sum: Double dispid 5;
-    property Comment: WideString dispid 6;
+    property ProductCode: WideString dispid 2;
+    property ProductName: WideString dispid 3;
+    property Sum: Double dispid 4;
   end;
 
 // *********************************************************************//
