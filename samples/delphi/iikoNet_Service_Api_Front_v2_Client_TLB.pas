@@ -12,10 +12,10 @@ unit iikoNet_Service_Api_Front_v2_Client_TLB;
 // ************************************************************************ //
 
 // PASTLWTR : 1.2
-// File generated on 09.02.2015 19:54:18 from Type Library described below.
+// File generated on 17.02.2015 14:17:43 from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: D:\PlatiusGithub\pos\bin\Client\iikoNet.Service.Api.Front.v2.Client.tlb (1)
+// Type Lib: F:\pos-api-sdk\bin\Client\iikoNet.Service.Api.Front.v2.Client.tlb (1)
 // LIBID: {730D7675-109C-45AF-987C-64F46561454C}
 // LCID: 0
 // Helpfile: 
@@ -252,11 +252,14 @@ type
     procedure Set_ProductName(const pRetVal: WideString); safecall;
     function Get_Sum: Double; safecall;
     procedure Set_Sum(pRetVal: Double); safecall;
+    function Get_Comment: WideString; safecall;
+    procedure Set_Comment(const pRetVal: WideString); safecall;
     property ProgramId: TGUID read Get_ProgramId write Set_ProgramId;
     property OperationCode: WideString read Get_OperationCode write Set_OperationCode;
     property ProductCode: WideString read Get_ProductCode write Set_ProductCode;
     property ProductName: WideString read Get_ProductName write Set_ProductName;
     property Sum: Double read Get_Sum write Set_Sum;
+    property Comment: WideString read Get_Comment write Set_Comment;
   end;
 
 // *********************************************************************//
@@ -271,6 +274,7 @@ type
     property ProductCode: WideString dispid 2;
     property ProductName: WideString dispid 3;
     property Sum: Double dispid 4;
+    property Comment: WideString dispid 5;
   end;
 
 // *********************************************************************//
@@ -375,10 +379,8 @@ type
     ['{0E51AC50-CB03-4172-9E54-50C791F115DC}']
     function Get_TotalBonus: Double; safecall;
     function Get_Programs: IResultsCollection; safecall;
-    function Get_AvailableFreeProductCodes: IResultsCollection; safecall;
     property TotalBonus: Double read Get_TotalBonus;
     property Programs: IResultsCollection read Get_Programs;
-    property AvailableFreeProductCodes: IResultsCollection read Get_AvailableFreeProductCodes;
   end;
 
 // *********************************************************************//
@@ -390,7 +392,6 @@ type
     ['{0E51AC50-CB03-4172-9E54-50C791F115DC}']
     property TotalBonus: Double readonly dispid 0;
     property Programs: IResultsCollection readonly dispid 1;
-    property AvailableFreeProductCodes: IResultsCollection readonly dispid 2;
   end;
 
 // *********************************************************************//
