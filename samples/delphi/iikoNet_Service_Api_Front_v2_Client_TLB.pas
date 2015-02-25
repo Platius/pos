@@ -12,7 +12,7 @@ unit iikoNet_Service_Api_Front_v2_Client_TLB;
 // ************************************************************************ //
 
 // PASTLWTR : 1.2
-// File generated on 17.02.2015 14:17:43 from Type Library described below.
+// File generated on 25.02.2015 14:41:45 from Type Library described below.
 
 // ************************************************************************  //
 // Type Lib: F:\pos-api-sdk\bin\Client\iikoNet.Service.Api.Front.v2.Client.tlb (1)
