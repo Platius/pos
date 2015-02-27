@@ -48,7 +48,11 @@ begin
   i_startupParams.AsyncCallWaitTimeoutSec := 10;
   i_startupParams.Locale := 'ru-Ru';
   i_startupParams.UseCompression := True;
-  i_startupParams.PosInfo := 'POS system, ver.1.0.0 build at 2014.10.14';
+  i_startupParams.TerminalId := '999';
+  i_startupParams.Vendor := 'KKC';
+  i_startupParams.Product := 'Intellect Style';
+  i_startupParams.ProductVersion := '0.1 beta';
+  i_startupParams.PluginVersion := '0.01 alpha';
   i_basicFlow.Initialize(i_startupParams);
 end;
 
@@ -69,6 +73,7 @@ var
   i_loyalityResult : ILoyaltyResult;
   operations, paymentLimits  : IResultsCollection;
   i_operation : ILoyaltyOperation;
+  i_programResult : ILoyaltyProgramResult;
   i_paymentLimit : IPaymentLimit;
   i_walletPayment : IWalletPayment;
   i_appliedDiscount : IAppliedDiscount;
@@ -137,18 +142,23 @@ begin
       ShowMessage('Happy birthday to you, dear ' + i_checkinResult.UserData.FullName);
 
     //перебираем полученный от iiko скидки на позиции
-    for i := 0 to i_checkinResult.LoyaltyResult.Operations.Count - 1 do begin
-       i_operation := i_checkinResult.LoyaltyResult.Operations.Get(i) as ILoyaltyOperation;
-       productCode := i_operation.ProductCode;
-       //i_operation.OperationId надо запомнить в скидке на позицию
-       discountId := i_operation.OperationId;
-       discountSum := i_operation.DiscountSum;
-       //флаг - есть ли скидки от айки
-       discountsFlag := discountsFlag or (discountSum <> 0);
+    for i := 0 to i_checkinResult.LoyaltyResult.Programs.Count - 1 do begin
+
+      i_programResult := i_checkinResult.LoyaltyResult.Programs.Get(i) as ILoyaltyProgramResult;
+
+      for j := 0 to i_programResult.Operations.Count - 1 do begin
+        i_operation := i_programResult.Operations.Get(i) as ILoyaltyOperation;
+        productCode := i_operation.ProductCode;
+        //i_operation.OperationId надо запомнить в скидке на позицию
+        discountId := i_operation.OperationId;
+        discountSum := i_operation.DiscountSum;
+        //флаг - есть ли скидки от айки
+        discountsFlag := discountsFlag or (discountSum <> 0);
+      end;
     end;
     //скидка на счет, надо запомнить i_loyalityResult.OperationId в скидке на счет
-    discountId := i_checkinResult.LoyaltyResult.OperationId;
-    discountSum := i_checkinResult.LoyaltyResult.TotalDiscount;
+    discountId := i_checkinResult.LoyaltyResult.Programs[0].OperationId;
+    discountSum := i_checkinResult.LoyaltyResult.Programs[0].TotalDiscount;
     //флаг - есть ли скидки от айки
     discountsFlag := discountsFlag or (discountSum <> 0);
 

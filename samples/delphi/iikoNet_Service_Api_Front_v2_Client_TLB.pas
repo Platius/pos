@@ -1,21 +1,21 @@
 unit iikoNet_Service_Api_Front_v2_Client_TLB;
 
 // ************************************************************************ //
-// WARNING                                                                    
-// -------                                                                    
-// The types declared in this file were generated from data read from a       
-// Type Library. If this type library is explicitly or indirectly (via        
-// another type library referring to this type library) re-imported, or the   
-// 'Refresh' command of the Type Library Editor activated while editing the   
-// Type Library, the contents of this file will be regenerated and all        
-// manual modifications will be lost.                                         
+// WARNING
+// -------
+// The types declared in this file were generated from data read from a
+// Type Library. If this type library is explicitly or indirectly (via
+// another type library referring to this type library) re-imported, or the
+// 'Refresh' command of the Type Library Editor activated while editing the
+// Type Library, the contents of this file will be regenerated and all
+// manual modifications will be lost.
 // ************************************************************************ //
 
 // PASTLWTR : 1.2
-// File generated on 25.02.2015 14:41:45 from Type Library described below.
+// File generated on 27.02.2015 14:33:36 from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: F:\pos-api-sdk\bin\Client\iikoNet.Service.Api.Front.v2.Client.tlb (1)
+// Type Lib: D:\iiko.net\dev\CardService\Api\Front\v2\iikoNet.Service.Api.Front.v2.Client\bin\Release\iikoNet.Service.Api.Front.v2.Client.tlb (1)
 // LIBID: {730D7675-109C-45AF-987C-64F46561454C}
 // LCID: 0
 // Helpfile: 
@@ -31,15 +31,15 @@ unit iikoNet_Service_Api_Front_v2_Client_TLB;
 interface
 
 uses Windows, ActiveX, Classes, Graphics, OleServer, StdVCL, Variants;
-  
+
 
 
 // *********************************************************************//
-// GUIDS declared in the TypeLibrary. Following prefixes are used:        
-//   Type Libraries     : LIBID_xxxx                                      
-//   CoClasses          : CLASS_xxxx                                      
-//   DISPInterfaces     : DIID_xxxx                                       
-//   Non-DISP interfaces: IID_xxxx                                        
+// GUIDS declared in the TypeLibrary. Following prefixes are used:
+//   Type Libraries     : LIBID_xxxx
+//   CoClasses          : CLASS_xxxx
+//   DISPInterfaces     : DIID_xxxx
+//   Non-DISP interfaces: IID_xxxx
 // *********************************************************************//
 const
   // TypeLibrary Major and minor versions
@@ -734,14 +734,20 @@ type
     procedure Set_UseCompression(pRetVal: WordBool); safecall;
     function Get_Locale: WideString; safecall;
     procedure Set_Locale(const pRetVal: WideString); safecall;
-    function Get_TerminalId: WideString; safecall;
-    procedure Set_TerminalId(const pRetVal: WideString); safecall;
-    function Get_PosInfo: WideString; safecall;
-    procedure Set_PosInfo(const pRetVal: WideString); safecall;
     function Get_TapeWidth: Integer; safecall;
     procedure Set_TapeWidth(pRetVal: Integer); safecall;
     function Get_DataDir: WideString; safecall;
     procedure Set_DataDir(const pRetVal: WideString); safecall;
+    function Get_TerminalId: WideString; safecall;
+    procedure Set_TerminalId(const pRetVal: WideString); safecall;
+    function Get_Vendor: WideString; safecall;
+    procedure Set_Vendor(const pRetVal: WideString); safecall;
+    function Get_Product: WideString; safecall;
+    procedure Set_Product(const pRetVal: WideString); safecall;
+    function Get_ProductVersion: WideString; safecall;
+    procedure Set_ProductVersion(const pRetVal: WideString); safecall;
+    function Get_PluginVersion: WideString; safecall;
+    procedure Set_PluginVersion(const pRetVal: WideString); safecall;
     property Host: WideString read Get_Host write Set_Host;
     property Login: WideString read Get_Login write Set_Login;
     property Password: WideString read Get_Password write Set_Password;
@@ -749,10 +755,13 @@ type
     property AsyncCallWaitTimeoutSec: Integer read Get_AsyncCallWaitTimeoutSec write Set_AsyncCallWaitTimeoutSec;
     property UseCompression: WordBool read Get_UseCompression write Set_UseCompression;
     property Locale: WideString read Get_Locale write Set_Locale;
-    property TerminalId: WideString read Get_TerminalId write Set_TerminalId;
-    property PosInfo: WideString read Get_PosInfo write Set_PosInfo;
     property TapeWidth: Integer read Get_TapeWidth write Set_TapeWidth;
     property DataDir: WideString read Get_DataDir write Set_DataDir;
+    property TerminalId: WideString read Get_TerminalId write Set_TerminalId;
+    property Vendor: WideString read Get_Vendor write Set_Vendor;
+    property Product: WideString read Get_Product write Set_Product;
+    property ProductVersion: WideString read Get_ProductVersion write Set_ProductVersion;
+    property PluginVersion: WideString read Get_PluginVersion write Set_PluginVersion;
   end;
 
 // *********************************************************************//
@@ -769,10 +778,13 @@ type
     property AsyncCallWaitTimeoutSec: Integer dispid 4;
     property UseCompression: WordBool dispid 5;
     property Locale: WideString dispid 6;
-    property TerminalId: WideString dispid 7;
-    property PosInfo: WideString dispid 8;
-    property TapeWidth: Integer dispid 9;
-    property DataDir: WideString dispid 10;
+    property TapeWidth: Integer dispid 7;
+    property DataDir: WideString dispid 8;
+    property TerminalId: WideString dispid 9;
+    property Vendor: WideString dispid 10;
+    property Product: WideString dispid 11;
+    property ProductVersion: WideString dispid 12;
+    property PluginVersion: WideString dispid 13;
   end;
 
 // *********************************************************************//
