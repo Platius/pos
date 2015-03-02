@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using iikoNet.Service.Api.Common.Front.Data;
 using iikoNet.Service.Api.Front.v2.Client;
 using iikoNet.Service.Api.Front.v2.Client.Extensions;
@@ -16,9 +17,13 @@ namespace Client
                 Host = "www4.iiko.net",
                 Login = "1714",
                 Password = "1714",
-                TerminalId = "1",
                 SyncCallTimeoutSec = 15*60,
                 UseCompression = true,
+                TerminalId = "1",
+                Vendor = "Platius",
+                Product = "C# Test client",
+                ProductVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString(),
+                PluginVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString()
             };
 
             // Создаем экземпляр клиента, подходящий нам по бизнеспроцессу
