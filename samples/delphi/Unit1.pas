@@ -68,7 +68,7 @@ var
   Sum : Currency;
   i_userdata : IUserData;
   walletCode : byte;
-  fullName, productCode, chequeFooter : widestring;
+  discountCode, fullName, productCode, chequeFooter : widestring;
   i_productLimits : IParamsCollection;
   i_loyalityResult : ILoyaltyResult;
   operations, paymentLimits  : IResultsCollection;
@@ -78,8 +78,7 @@ var
   i_walletPayment : IWalletPayment;
   i_appliedDiscount : IAppliedDiscount;
   hres : HRESULT;
-  discountId: TGUID;
-  i, n : integer;
+  i, j, n : integer;
   i_payments, i_discounts : IParamsCollection;
   discountSum, minSum, maxSum : Double;
   i_closeResult : ICloseResult;
@@ -149,16 +148,14 @@ begin
       for j := 0 to i_programResult.Operations.Count - 1 do begin
         i_operation := i_programResult.Operations.Get(i) as ILoyaltyOperation;
         productCode := i_operation.ProductCode;
-        //i_operation.OperationId надо запомнить в скидке на позицию
-        discountId := i_operation.OperationId;
+        //i_operation.Code надо запомнить в скидке на позицию
+        discountCode := i_operation.Code;
         discountSum := i_operation.DiscountSum;
         //флаг - есть ли скидки от айки
         discountsFlag := discountsFlag or (discountSum <> 0);
       end;
     end;
-    //скидка на счет, надо запомнить i_loyalityResult.OperationId в скидке на счет
-    discountId := i_checkinResult.LoyaltyResult.Programs[0].OperationId;
-    discountSum := i_checkinResult.LoyaltyResult.Programs[0].TotalDiscount;
+
     //флаг - есть ли скидки от айки
     discountsFlag := discountsFlag or (discountSum <> 0);
 
@@ -200,7 +197,7 @@ begin
       if discountsFlag then begin
         //передаем в iiko обратно примененные скидки
         i_appliedDiscount := i_basicFlow.CreateAppliedDiscount();
-        i_appliedDiscount.DiscountName := 'Discount 1';
+        i_appliedDiscount.OperationCode := discountCode;
         i_appliedDiscount.ProductCode := '100100';
         i_appliedDiscount.Sum := 0.5;
         i_discounts.Add(i_appliedDiscount);
