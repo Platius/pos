@@ -3,7 +3,7 @@
 *.dcu
 
 # visual studio
-samples/*/bin/
+samples/**/bin/
 obj/
 *.suo
 *.user
