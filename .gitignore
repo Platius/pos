@@ -1,5 +1,5 @@
 # delphi
-*.exe
+samples/**/*.exe
 *.dcu
 
 # visual studio
