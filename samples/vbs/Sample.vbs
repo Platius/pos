@@ -24,6 +24,7 @@ flow.Initialize (startupParams)
 Dim order
 Set order = flow.CreateOrder()
 order.Id = flow.NewGuid
+MsgBox (order.Id)
 order.Number = "444"
 order.Sum = 621.2
 order.SumAfterDiscount = 610.6
