@@ -17,7 +17,7 @@ startupParams.ProductVersion = "<ProductVersion>"
 startupParams.PluginVersion = "<ProductVersion>"
 
 Dim flow
-Set flow = CreateObject("iikoNet.Service.Api.Front.v2.Client.Extensions.BasicWorkflowDummy")
+Set flow = CreateObject("iikoNet.Service.Api.Front.v2.Client.Extensions.WorkflowDummy")
 flow.Initialize (startupParams)
 
 'Checkin
