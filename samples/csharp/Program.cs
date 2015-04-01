@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Reflection;
-using iikoNet.Service.Api.Common.Front.Data;
-using iikoNet.Service.Api.Front.v2.Client;
-using iikoNet.Service.Api.Front.v2.Client.Extensions;
-using iikoNet.Service.Api.Front.v2.Data;
+using Platius.Service.Api.Common.Front.Data;
+using Platius.Service.Api.Front.v2.Client;
+using Platius.Service.Api.Front.v2.Client.Extensions;
+using Platius.Service.Api.Front.v2.Data;
 
 namespace Client
 {
@@ -27,7 +27,7 @@ namespace Client
             };
 
             // Создаем экземпляр клиента, подходящий нам по бизнеспроцессу
-            ComplexWorkflow flow = new ComplexWorkflow(startupParams);
+            var flow = new Workflow(startupParams);
 
             // Создаем заказ с двумя элементами
             var item1 = new OrderItem

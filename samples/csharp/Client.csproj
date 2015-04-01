@@ -50,21 +50,21 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="iikoNet.Common, Version=0.0.0.718, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Platius.Common, Version=0.0.0.718, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\Client\iikoNet.Common.dll</HintPath>
+      <HintPath>..\..\bin\Client\Platius.Common.dll</HintPath>
     </Reference>
-    <Reference Include="iikoNet.Service.Api.Common, Version=0.0.0.718, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Platius.Service.Api.Common, Version=0.0.0.718, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\Client\iikoNet.Service.Api.Common.dll</HintPath>
+      <HintPath>..\..\bin\Client\Platius.Service.Api.Common.dll</HintPath>
     </Reference>
-    <Reference Include="iikoNet.Service.Api.Front.v2, Version=0.0.0.718, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Platius.Service.Api.Front.v2, Version=0.0.0.718, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\Client\iikoNet.Service.Api.Front.v2.dll</HintPath>
+      <HintPath>..\..\bin\Client\Platius.Service.Api.Front.v2.dll</HintPath>
     </Reference>
-    <Reference Include="iikoNet.Service.Api.Front.v2.Client, Version=0.0.0.718, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Platius.Service.Api.Front.v2.Client, Version=0.0.0.718, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\Client\iikoNet.Service.Api.Front.v2.Client.dll</HintPath>
+      <HintPath>..\..\bin\Client\Platius.Service.Api.Front.v2.Client.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Threading.Tasks">
       <HintPath>packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>

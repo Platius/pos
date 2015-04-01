@@ -50,17 +50,17 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="iikoNet.Common">
-      <HintPath>..\..\..\bin\Client\iikoNet.Common.dll</HintPath>
+    <Reference Include="Platius.Common">
+      <HintPath>..\..\..\bin\Client\Platius.Common.dll</HintPath>
     </Reference>
-    <Reference Include="iikoNet.Service.Api.Common">
-      <HintPath>..\..\..\bin\Client\iikoNet.Service.Api.Common.dll</HintPath>
+    <Reference Include="Platius.Service.Api.Common">
+      <HintPath>..\..\..\bin\Client\Platius.Service.Api.Common.dll</HintPath>
     </Reference>
-    <Reference Include="iikoNet.Service.Api.Front.v2">
-      <HintPath>..\..\..\bin\Client\iikoNet.Service.Api.Front.v2.dll</HintPath>
+    <Reference Include="Platius.Service.Api.Front.v2">
+      <HintPath>..\..\..\bin\Client\Platius.Service.Api.Front.v2.dll</HintPath>
     </Reference>
-    <Reference Include="iikoNet.Service.Api.Front.v2.Client">
-      <HintPath>..\..\..\bin\Client\iikoNet.Service.Api.Front.v2.Client.dll</HintPath>
+    <Reference Include="Platius.Service.Api.Front.v2.Client">
+      <HintPath>..\..\..\bin\Client\Platius.Service.Api.Front.v2.Client.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Threading.Tasks">
       <HintPath>packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>

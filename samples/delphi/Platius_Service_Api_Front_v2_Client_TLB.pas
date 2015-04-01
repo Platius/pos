@@ -1,21 +1,21 @@
-unit iikoNet_Service_Api_Front_v2_Client_TLB;
+unit Platius_Service_Api_Front_v2_Client_TLB;
 
 // ************************************************************************ //
-// WARNING
-// -------
-// The types declared in this file were generated from data read from a
-// Type Library. If this type library is explicitly or indirectly (via
-// another type library referring to this type library) re-imported, or the
-// 'Refresh' command of the Type Library Editor activated while editing the
-// Type Library, the contents of this file will be regenerated and all
-// manual modifications will be lost.
+// WARNING                                                                    
+// -------                                                                    
+// The types declared in this file were generated from data read from a       
+// Type Library. If this type library is explicitly or indirectly (via        
+// another type library referring to this type library) re-imported, or the   
+// 'Refresh' command of the Type Library Editor activated while editing the   
+// Type Library, the contents of this file will be regenerated and all        
+// manual modifications will be lost.                                         
 // ************************************************************************ //
 
 // PASTLWTR : 1.2
-// File generated on 27.02.2015 14:33:36 from Type Library described below.
+// File generated on 01.04.2015 23:08:06 from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: D:\iiko.net\dev\CardService\Api\Front\v2\iikoNet.Service.Api.Front.v2.Client\bin\Release\iikoNet.Service.Api.Front.v2.Client.tlb (1)
+// Type Lib: F:\pos-api-sdk\bin\Client\Platius.Service.Api.Front.v2.Client.tlb (1)
 // LIBID: {730D7675-109C-45AF-987C-64F46561454C}
 // LCID: 0
 // Helpfile: 
@@ -31,29 +31,26 @@ unit iikoNet_Service_Api_Front_v2_Client_TLB;
 interface
 
 uses Windows, ActiveX, Classes, Graphics, OleServer, StdVCL, Variants;
-
+  
 
 
 // *********************************************************************//
-// GUIDS declared in the TypeLibrary. Following prefixes are used:
-//   Type Libraries     : LIBID_xxxx
-//   CoClasses          : CLASS_xxxx
-//   DISPInterfaces     : DIID_xxxx
-//   Non-DISP interfaces: IID_xxxx
+// GUIDS declared in the TypeLibrary. Following prefixes are used:        
+//   Type Libraries     : LIBID_xxxx                                      
+//   CoClasses          : CLASS_xxxx                                      
+//   DISPInterfaces     : DIID_xxxx                                       
+//   Non-DISP interfaces: IID_xxxx                                        
 // *********************************************************************//
 const
   // TypeLibrary Major and minor versions
-  iikoNet_Service_Api_Front_v2_ClientMajorVersion = 1;
-  iikoNet_Service_Api_Front_v2_ClientMinorVersion = 0;
+  Platius_Service_Api_Front_v2_ClientMajorVersion = 1;
+  Platius_Service_Api_Front_v2_ClientMinorVersion = 0;
 
-  LIBID_iikoNet_Service_Api_Front_v2_Client: TGUID = '{730D7675-109C-45AF-987C-64F46561454C}';
+  LIBID_Platius_Service_Api_Front_v2_Client: TGUID = '{730D7675-109C-45AF-987C-64F46561454C}';
 
-  IID_IBasicWorkflow: TGUID = '{A62D03C7-F896-4298-9640-290DFE622C58}';
-  CLASS_BasicWorkflowDummyImpl: TGUID = '{7D4E0DFB-DB89-4D72-9D70-48F78DE447C2}';
-  CLASS_BasicWorkflowImpl: TGUID = '{A3D59A39-03FE-436A-88EC-EAD2ECF407D8}';
-  IID_IComplexWorkflow: TGUID = '{3E40C4B6-FED1-4F48-9786-793CEF93DB45}';
-  CLASS_ComplexWorkflowDummyImpl: TGUID = '{EA81ADC3-B84C-45D6-9E6E-1866A419A45E}';
-  CLASS_ComplexWorkflowImpl: TGUID = '{2ED51F07-CDB5-423E-919A-F1B93C9F9DA4}';
+  IID_IWorkflow: TGUID = '{A62D03C7-F896-4298-9640-290DFE622C58}';
+  CLASS_WorkflowDummyImpl: TGUID = '{7D4E0DFB-DB89-4D72-9D70-48F78DE447C2}';
+  CLASS_WorkflowImpl: TGUID = '{A3D59A39-03FE-436A-88EC-EAD2ECF407D8}';
   IID_IAppliedDiscount: TGUID = '{0C703C88-DDA1-4531-9FE8-13341FCCD4D7}';
   IID_ICancelledOrderItem: TGUID = '{D5354BB7-8872-4B6A-81A2-EB589C59B304}';
   IID_ILoyaltyOperation: TGUID = '{18D27725-489C-4AD3-866C-1BAAF7DD09EC}';
@@ -73,7 +70,9 @@ const
   IID_ICheckinResult: TGUID = '{73F1A661-AB59-4B55-A8FE-F417BE2C701C}';
   IID_ICloseResult: TGUID = '{8B3B11AD-B2F7-428D-9B37-8EC581F6CE78}';
   IID_IRefundResult: TGUID = '{E10DBDB6-473D-4DC9-921E-F45FCC3CF403}';
+  IID__LogConfigurer: TGUID = '{8996E85A-3F93-30E1-914D-F35855F58D9E}';
   CLASS_StartupParams: TGUID = '{DEFC0114-8AB8-46C3-8E94-03444BF60736}';
+  CLASS_LogConfigurer: TGUID = '{48C70BA1-9C74-35D9-8571-22911C73BA12}';
 
 // *********************************************************************//
 // Declaration of Enumerations defined in Type Library                    
@@ -85,25 +84,13 @@ const
   WalletCode_Bonus = $00000000;
   WalletCode_PaymentCard = $00000001;
 
-// Constants for enum OperationType
-type
-  OperationType = TOleEnum;
-const
-  OperationType_Unknown = $00000000;
-  OperationType_Empty = $00000001;
-  OperationType_CancelPayment = $00000002;
-  OperationType_CloseOrder = $00000003;
-  OperationType_Abort = $00000004;
-
 type
 
 // *********************************************************************//
 // Forward declaration of types defined in TypeLibrary                    
 // *********************************************************************//
-  IBasicWorkflow = interface;
-  IBasicWorkflowDisp = dispinterface;
-  IComplexWorkflow = interface;
-  IComplexWorkflowDisp = dispinterface;
+  IWorkflow = interface;
+  IWorkflowDisp = dispinterface;
   IAppliedDiscount = interface;
   IAppliedDiscountDisp = dispinterface;
   ICancelledOrderItem = interface;
@@ -142,24 +129,25 @@ type
   ICloseResultDisp = dispinterface;
   IRefundResult = interface;
   IRefundResultDisp = dispinterface;
+  _LogConfigurer = interface;
+  _LogConfigurerDisp = dispinterface;
 
 // *********************************************************************//
 // Declaration of CoClasses defined in Type Library                       
 // (NOTE: Here we map each CoClass to its Default Interface)              
 // *********************************************************************//
-  BasicWorkflowDummyImpl = IBasicWorkflow;
-  BasicWorkflowImpl = IBasicWorkflow;
-  ComplexWorkflowDummyImpl = IComplexWorkflow;
-  ComplexWorkflowImpl = IComplexWorkflow;
+  WorkflowDummyImpl = IWorkflow;
+  WorkflowImpl = IWorkflow;
   StartupParams = IStartupParams;
+  LogConfigurer = _LogConfigurer;
 
 
 // *********************************************************************//
-// Interface: IBasicWorkflow
+// Interface: IWorkflow
 // Flags:     (4416) Dual OleAutomation Dispatchable
 // GUID:      {A62D03C7-F896-4298-9640-290DFE622C58}
 // *********************************************************************//
-  IBasicWorkflow = interface(IDispatch)
+  IWorkflow = interface(IDispatch)
     ['{A62D03C7-F896-4298-9640-290DFE622C58}']
     function Get_NewGuid: TGUID; safecall;
     function CreateParamsCollection: IParamsCollection; safecall;
@@ -181,15 +169,17 @@ type
     function Close(const order: IOrder; sumForBonus: Double): ICloseResult; safecall;
     procedure Abort(orderId: TGUID); safecall;
     procedure Reset(orderId: TGUID); safecall;
+    function UpdateOrder(const order: IOrder; const limits: IParamsCollection): ICheckinResult; safecall;
+    function GetPayments(const orderIds: IParamsCollection): IResultsCollection; safecall;
     property NewGuid: TGUID read Get_NewGuid;
   end;
 
 // *********************************************************************//
-// DispIntf:  IBasicWorkflowDisp
+// DispIntf:  IWorkflowDisp
 // Flags:     (4416) Dual OleAutomation Dispatchable
 // GUID:      {A62D03C7-F896-4298-9640-290DFE622C58}
 // *********************************************************************//
-  IBasicWorkflowDisp = dispinterface
+  IWorkflowDisp = dispinterface
     ['{A62D03C7-F896-4298-9640-290DFE622C58}']
     property NewGuid: {??TGUID}OleVariant readonly dispid 0;
     function CreateParamsCollection: IParamsCollection; dispid 1;
@@ -211,26 +201,6 @@ type
     function Close(const order: IOrder; sumForBonus: Double): ICloseResult; dispid 105;
     procedure Abort(orderId: {??TGUID}OleVariant); dispid 106;
     procedure Reset(orderId: {??TGUID}OleVariant); dispid 107;
-  end;
-
-// *********************************************************************//
-// Interface: IComplexWorkflow
-// Flags:     (4416) Dual OleAutomation Dispatchable
-// GUID:      {3E40C4B6-FED1-4F48-9786-793CEF93DB45}
-// *********************************************************************//
-  IComplexWorkflow = interface(IDispatch)
-    ['{3E40C4B6-FED1-4F48-9786-793CEF93DB45}']
-    function UpdateOrder(const order: IOrder; const limits: IParamsCollection): ICheckinResult; safecall;
-    function GetPayments(const orderIds: IParamsCollection): IResultsCollection; safecall;
-  end;
-
-// *********************************************************************//
-// DispIntf:  IComplexWorkflowDisp
-// Flags:     (4416) Dual OleAutomation Dispatchable
-// GUID:      {3E40C4B6-FED1-4F48-9786-793CEF93DB45}
-// *********************************************************************//
-  IComplexWorkflowDisp = dispinterface
-    ['{3E40C4B6-FED1-4F48-9786-793CEF93DB45}']
     function UpdateOrder(const order: IOrder; const limits: IParamsCollection): ICheckinResult; dispid 200;
     function GetPayments(const orderIds: IParamsCollection): IResultsCollection; dispid 201;
   end;
@@ -867,51 +837,45 @@ type
   end;
 
 // *********************************************************************//
-// The Class CoBasicWorkflowDummyImpl provides a Create and CreateRemote method to          
-// create instances of the default interface IBasicWorkflow exposed by              
-// the CoClass BasicWorkflowDummyImpl. The functions are intended to be used by             
-// clients wishing to automate the CoClass objects exposed by the         
-// server of this typelibrary.                                            
+// Interface: _LogConfigurer
+// Flags:     (4432) Hidden Dual OleAutomation Dispatchable
+// GUID:      {8996E85A-3F93-30E1-914D-F35855F58D9E}
 // *********************************************************************//
-  CoBasicWorkflowDummyImpl = class
-    class function Create: IBasicWorkflow;
-    class function CreateRemote(const MachineName: string): IBasicWorkflow;
+  _LogConfigurer = interface(IDispatch)
+    ['{8996E85A-3F93-30E1-914D-F35855F58D9E}']
   end;
 
 // *********************************************************************//
-// The Class CoBasicWorkflowImpl provides a Create and CreateRemote method to          
-// create instances of the default interface IBasicWorkflow exposed by              
-// the CoClass BasicWorkflowImpl. The functions are intended to be used by             
-// clients wishing to automate the CoClass objects exposed by the         
-// server of this typelibrary.                                            
+// DispIntf:  _LogConfigurerDisp
+// Flags:     (4432) Hidden Dual OleAutomation Dispatchable
+// GUID:      {8996E85A-3F93-30E1-914D-F35855F58D9E}
 // *********************************************************************//
-  CoBasicWorkflowImpl = class
-    class function Create: IBasicWorkflow;
-    class function CreateRemote(const MachineName: string): IBasicWorkflow;
+  _LogConfigurerDisp = dispinterface
+    ['{8996E85A-3F93-30E1-914D-F35855F58D9E}']
   end;
 
 // *********************************************************************//
-// The Class CoComplexWorkflowDummyImpl provides a Create and CreateRemote method to          
-// create instances of the default interface IComplexWorkflow exposed by              
-// the CoClass ComplexWorkflowDummyImpl. The functions are intended to be used by             
+// The Class CoWorkflowDummyImpl provides a Create and CreateRemote method to          
+// create instances of the default interface IWorkflow exposed by              
+// the CoClass WorkflowDummyImpl. The functions are intended to be used by             
 // clients wishing to automate the CoClass objects exposed by the         
 // server of this typelibrary.                                            
 // *********************************************************************//
-  CoComplexWorkflowDummyImpl = class
-    class function Create: IComplexWorkflow;
-    class function CreateRemote(const MachineName: string): IComplexWorkflow;
+  CoWorkflowDummyImpl = class
+    class function Create: IWorkflow;
+    class function CreateRemote(const MachineName: string): IWorkflow;
   end;
 
 // *********************************************************************//
-// The Class CoComplexWorkflowImpl provides a Create and CreateRemote method to          
-// create instances of the default interface IComplexWorkflow exposed by              
-// the CoClass ComplexWorkflowImpl. The functions are intended to be used by             
+// The Class CoWorkflowImpl provides a Create and CreateRemote method to          
+// create instances of the default interface IWorkflow exposed by              
+// the CoClass WorkflowImpl. The functions are intended to be used by             
 // clients wishing to automate the CoClass objects exposed by the         
 // server of this typelibrary.                                            
 // *********************************************************************//
-  CoComplexWorkflowImpl = class
-    class function Create: IComplexWorkflow;
-    class function CreateRemote(const MachineName: string): IComplexWorkflow;
+  CoWorkflowImpl = class
+    class function Create: IWorkflow;
+    class function CreateRemote(const MachineName: string): IWorkflow;
   end;
 
 // *********************************************************************//
@@ -926,48 +890,40 @@ type
     class function CreateRemote(const MachineName: string): IStartupParams;
   end;
 
+// *********************************************************************//
+// The Class CoLogConfigurer provides a Create and CreateRemote method to          
+// create instances of the default interface _LogConfigurer exposed by              
+// the CoClass LogConfigurer. The functions are intended to be used by             
+// clients wishing to automate the CoClass objects exposed by the         
+// server of this typelibrary.                                            
+// *********************************************************************//
+  CoLogConfigurer = class
+    class function Create: _LogConfigurer;
+    class function CreateRemote(const MachineName: string): _LogConfigurer;
+  end;
+
 implementation
 
 uses ComObj;
 
-class function CoBasicWorkflowDummyImpl.Create: IBasicWorkflow;
+class function CoWorkflowDummyImpl.Create: IWorkflow;
 begin
-  Result := CreateComObject(CLASS_BasicWorkflowDummyImpl) as IBasicWorkflow;
+  Result := CreateComObject(CLASS_WorkflowDummyImpl) as IWorkflow;
 end;
 
-class function CoBasicWorkflowDummyImpl.CreateRemote(const MachineName: string): IBasicWorkflow;
+class function CoWorkflowDummyImpl.CreateRemote(const MachineName: string): IWorkflow;
 begin
-  Result := CreateRemoteComObject(MachineName, CLASS_BasicWorkflowDummyImpl) as IBasicWorkflow;
+  Result := CreateRemoteComObject(MachineName, CLASS_WorkflowDummyImpl) as IWorkflow;
 end;
 
-class function CoBasicWorkflowImpl.Create: IBasicWorkflow;
+class function CoWorkflowImpl.Create: IWorkflow;
 begin
-  Result := CreateComObject(CLASS_BasicWorkflowImpl) as IBasicWorkflow;
+  Result := CreateComObject(CLASS_WorkflowImpl) as IWorkflow;
 end;
 
-class function CoBasicWorkflowImpl.CreateRemote(const MachineName: string): IBasicWorkflow;
+class function CoWorkflowImpl.CreateRemote(const MachineName: string): IWorkflow;
 begin
-  Result := CreateRemoteComObject(MachineName, CLASS_BasicWorkflowImpl) as IBasicWorkflow;
-end;
-
-class function CoComplexWorkflowDummyImpl.Create: IComplexWorkflow;
-begin
-  Result := CreateComObject(CLASS_ComplexWorkflowDummyImpl) as IComplexWorkflow;
-end;
-
-class function CoComplexWorkflowDummyImpl.CreateRemote(const MachineName: string): IComplexWorkflow;
-begin
-  Result := CreateRemoteComObject(MachineName, CLASS_ComplexWorkflowDummyImpl) as IComplexWorkflow;
-end;
-
-class function CoComplexWorkflowImpl.Create: IComplexWorkflow;
-begin
-  Result := CreateComObject(CLASS_ComplexWorkflowImpl) as IComplexWorkflow;
-end;
-
-class function CoComplexWorkflowImpl.CreateRemote(const MachineName: string): IComplexWorkflow;
-begin
-  Result := CreateRemoteComObject(MachineName, CLASS_ComplexWorkflowImpl) as IComplexWorkflow;
+  Result := CreateRemoteComObject(MachineName, CLASS_WorkflowImpl) as IWorkflow;
 end;
 
 class function CoStartupParams.Create: IStartupParams;
@@ -978,6 +934,16 @@ end;
 class function CoStartupParams.CreateRemote(const MachineName: string): IStartupParams;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_StartupParams) as IStartupParams;
+end;
+
+class function CoLogConfigurer.Create: _LogConfigurer;
+begin
+  Result := CreateComObject(CLASS_LogConfigurer) as _LogConfigurer;
+end;
+
+class function CoLogConfigurer.CreateRemote(const MachineName: string): _LogConfigurer;
+begin
+  Result := CreateRemoteComObject(MachineName, CLASS_LogConfigurer) as _LogConfigurer;
 end;
 
 end.
