@@ -119,17 +119,17 @@ begin
     i_productLimits := i_Flow.CreateParamsCollection();
     i_productLimit := i_Flow.CreateProductLimit();
     i_productLimit.ProductCode := '100100';
-    //i_productLimit.CanBePaidByBonuses := false;
-    i_productLimit.MinPrice := 500;
+    i_productLimit.MaxBonusPayment := 100;
+    i_productLimit.MaxDiscount := 100;
     i_productLimits.Add(i_productLimit);
 
     i_productLimit := i_Flow.CreateProductLimit();
     i_productLimit.ProductCode := '200100';
     //алкоголь не может быть оплачен бонусами
-    i_productLimit.CanBePaidByBonuses := false;
+    i_productLimit.MaxBonusPayment := 0;
     //цена не может стать менньше указанной величины
     //можно ли ее не вообще не указывать, что будет?
-    i_productLimit.MinPrice := 500;
+    i_productLimit.MaxDiscount := 100;
     i_productLimits.Add(i_productLimit);
 
     //проводим счет
@@ -138,6 +138,7 @@ begin
     if (i_checkinResult.UserData.GetBirthday = Now) then
       ShowMessage('Happy birthday to you, dear ' + i_checkinResult.UserData.FullName);
 
+    i_checkinResult := i_Flow.Precheque(i_order, i_productLimits);
     //перебираем полученный от iiko скидки на позиции
     for i := 0 to i_checkinResult.LoyaltyResult.Programs.Count - 1 do begin
 
@@ -214,12 +215,10 @@ begin
     //закрываем счет по iiko
     i_order.SetFiscalChequeNumber(223);
     i_order.CashierName := 'Иванова Ивонна';
-    i_order.SetPrechequeTime(Now - OneHour);
-    i_order.SetCloseTime(Now);
     i_order.RestarauntSectionName := 'Зал 1';
     i_order.TableNumber := '7';
 
-    i_closeResult := i_Flow.Close(i_order, 100);
+    i_closeResult := i_Flow.Close(i_order.Id, 100);
 
     chequeFooter := i_closeResult.ChequeFooter;
 
@@ -256,7 +255,7 @@ var
   i_walletPayment : IWalletPayment;
   i_appliedDiscount : IAppliedDiscount;
   hres : HRESULT;
-  discountId: TGUID;
+  discountId: WideString;
   i, j, n : integer;
   i_payments, i_discounts : IParamsCollection;
   discountSum, minSum, maxSum : Double;
@@ -294,21 +293,21 @@ begin
     i_productLimits := i_Flow.CreateParamsCollection();
     i_productLimit := i_Flow.CreateProductLimit();
     i_productLimit.ProductCode := '100100';
-    //i_productLimit.CanBePaidByBonuses := false;
-    i_productLimit.MinPrice := 500;
+    i_productLimit.MaxBonusPayment := 100;
+    i_productLimit.MaxDiscount := 100;
     i_productLimits.Add(i_productLimit);
 
     i_productLimit := i_Flow.CreateProductLimit();
     i_productLimit.ProductCode := '200100';
     //алкоголь не может быть оплачен бонусами
-    i_productLimit.CanBePaidByBonuses := false;
+    i_productLimit.MaxBonusPayment := 0;
     //цена не может стать менньше указанной величины
     //можно ли ее не вообще не указывать, что будет?
-    i_productLimit.MinPrice := 500;
+    i_productLimit.MaxDiscount := 100;
     i_productLimits.Add(i_productLimit);
 
     //проводим счет
-    i_checkinResult := i_Flow.UpdateOrder(i_order, i_productLimits);
+    i_checkinResult := i_Flow.Precheque(i_order, i_productLimits);
     //operations := i_complexFlow.GetPayments(nil);
     ShowMessage('Пречек: ' + i_checkinResult.ChequeFooter);
 
@@ -327,9 +326,6 @@ begin
          end
       end;
     end;
-    //скидка на счет, надо запомнить i_loyalityResult.OperationId в скидке на счет
-    discountId := i_checkinResult.LoyaltyResult.OperationId;
-    discountSum := i_checkinResult.LoyaltyResult.TotalDiscount;
     //флаг - есть ли скидки от айки
     discountsFlag := discountsFlag or (discountSum <> 0);
 
@@ -363,13 +359,13 @@ begin
       if discountsFlag then begin
         //передаем в iiko обратно примененные скидки
         i_appliedDiscount := i_Flow.CreateAppliedDiscount();
-        i_appliedDiscount.DiscountName := 'Discount 1';
+        i_appliedDiscount.OperationCode := 'Discount 1';
         i_appliedDiscount.ProductCode := '100100';
         i_appliedDiscount.Sum := 0.5;
         i_discounts.Add(i_appliedDiscount);
 
         i_appliedDiscount := i_Flow.CreateAppliedDiscount();
-        i_appliedDiscount.DiscountName := 'Discount 2';
+        i_appliedDiscount.OperationCode := 'Discount 2';
         i_appliedDiscount.ProductCode := '100100';
         i_appliedDiscount.Sum := 0.3;
         i_discounts.Add(i_appliedDiscount);
@@ -383,12 +379,10 @@ begin
     //закрываем счет по iiko
     i_order.SetFiscalChequeNumber(223);
     i_order.CashierName := 'Иванова Ивонна';
-    i_order.SetPrechequeTime(Now - OneHour);
-    i_order.SetCloseTime(Now);
     i_order.RestarauntSectionName := 'Зал 1';
     i_order.TableNumber := '7';
 
-    i_closeResult := i_Flow.Close(i_order, 100);
+    i_closeResult := i_Flow.Close(i_order.Id, 100);
     //закрываем свой счет, печатаем дополнительный текст
     ShowMessage('Чек: ' + i_closeResult.ChequeFooter);
   finally

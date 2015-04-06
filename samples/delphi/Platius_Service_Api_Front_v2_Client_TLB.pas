@@ -12,10 +12,10 @@ unit Platius_Service_Api_Front_v2_Client_TLB;
 // ************************************************************************ //
 
 // PASTLWTR : 1.2
-// File generated on 01.04.2015 23:08:06 from Type Library described below.
+// File generated on 06.04.2015 13:07:22 from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: F:\pos-api-sdk\bin\Client\Platius.Service.Api.Front.v2.Client.tlb (1)
+// Type Lib: D:\PlatiusGithub\pos\bin\Client\Platius.Service.Api.Front.v2.Client.tlb (1)
 // LIBID: {730D7675-109C-45AF-987C-64F46561454C}
 // LCID: 0
 // Helpfile: 
@@ -72,7 +72,7 @@ const
   IID_IRefundResult: TGUID = '{E10DBDB6-473D-4DC9-921E-F45FCC3CF403}';
   IID__LogConfigurer: TGUID = '{8996E85A-3F93-30E1-914D-F35855F58D9E}';
   CLASS_StartupParams: TGUID = '{DEFC0114-8AB8-46C3-8E94-03444BF60736}';
-  CLASS_LogConfigurer: TGUID = '{48C70BA1-9C74-35D9-8571-22911C73BA12}';
+  CLASS_LogConfigurer: TGUID = '{54B5CC1D-2054-3606-812E-75DED1731A47}';
 
 // *********************************************************************//
 // Declaration of Enumerations defined in Type Library                    
@@ -163,13 +163,13 @@ type
                      const limits: IParamsCollection): ICheckinResult; safecall;
     procedure Pay(orderId: TGUID; transactionId: TGUID; const payments: IParamsCollection; 
                   const discounts: IParamsCollection); safecall;
-    procedure CancelPay(orderId: TGUID; transactionId: TGUID); safecall;
     function Refund(orderId: TGUID; transactionId: TGUID; const refunds: IParamsCollection; 
                     const cancelledItems: IParamsCollection): IRefundResult; safecall;
-    function Close(const order: IOrder; sumForBonus: Double): ICloseResult; safecall;
+    function Close(orderId: TGUID; sumForBonus: Double): ICloseResult; safecall;
     procedure Abort(orderId: TGUID); safecall;
     procedure Reset(orderId: TGUID); safecall;
     function UpdateOrder(const order: IOrder; const limits: IParamsCollection): ICheckinResult; safecall;
+    function Precheque(const order: IOrder; const limits: IParamsCollection): ICheckinResult; safecall;
     function GetPayments(const orderIds: IParamsCollection): IResultsCollection; safecall;
     property NewGuid: TGUID read Get_NewGuid;
   end;
@@ -195,13 +195,13 @@ type
                      const limits: IParamsCollection): ICheckinResult; dispid 101;
     procedure Pay(orderId: {??TGUID}OleVariant; transactionId: {??TGUID}OleVariant; 
                   const payments: IParamsCollection; const discounts: IParamsCollection); dispid 102;
-    procedure CancelPay(orderId: {??TGUID}OleVariant; transactionId: {??TGUID}OleVariant); dispid 103;
     function Refund(orderId: {??TGUID}OleVariant; transactionId: {??TGUID}OleVariant; 
                     const refunds: IParamsCollection; const cancelledItems: IParamsCollection): IRefundResult; dispid 104;
-    function Close(const order: IOrder; sumForBonus: Double): ICloseResult; dispid 105;
+    function Close(orderId: {??TGUID}OleVariant; sumForBonus: Double): ICloseResult; dispid 105;
     procedure Abort(orderId: {??TGUID}OleVariant); dispid 106;
     procedure Reset(orderId: {??TGUID}OleVariant); dispid 107;
     function UpdateOrder(const order: IOrder; const limits: IParamsCollection): ICheckinResult; dispid 200;
+    function Precheque(const order: IOrder; const limits: IParamsCollection): ICheckinResult; dispid 202;
     function GetPayments(const orderIds: IParamsCollection): IResultsCollection; dispid 201;
   end;
 
@@ -390,8 +390,6 @@ type
     function Get_CashierName: WideString; safecall;
     procedure Set_CashierName(const pRetVal: WideString); safecall;
     procedure SetOpenTime(openTime: TDateTime); safecall;
-    procedure SetPrechequeTime(prechequeTime: TDateTime); safecall;
-    procedure SetCloseTime(closeTime: TDateTime); safecall;
     procedure AddItem(const item: IOrderItem); safecall;
     procedure SetFiscalChequeNumber(fiscalChequeNumber: Integer); safecall;
     property Id: TGUID read Get_Id write Set_Id;
@@ -422,10 +420,8 @@ type
     property WaiterName: WideString dispid 7;
     property CashierName: WideString dispid 8;
     procedure SetOpenTime(openTime: TDateTime); dispid 9;
-    procedure SetPrechequeTime(prechequeTime: TDateTime); dispid 10;
-    procedure SetCloseTime(closeTime: TDateTime); dispid 11;
-    procedure AddItem(const item: IOrderItem); dispid 12;
-    procedure SetFiscalChequeNumber(fiscalChequeNumber: Integer); dispid 13;
+    procedure AddItem(const item: IOrderItem); dispid 10;
+    procedure SetFiscalChequeNumber(fiscalChequeNumber: Integer); dispid 11;
   end;
 
 // *********************************************************************//
@@ -559,13 +555,13 @@ type
     ['{0FDBC7F1-C390-41D1-8C3B-8FC7CBBC5083}']
     function Get_ProductCode: WideString; safecall;
     procedure Set_ProductCode(const pRetVal: WideString); safecall;
-    function Get_MinPrice: Double; safecall;
-    procedure Set_MinPrice(pRetVal: Double); safecall;
-    function Get_CanBePaidByBonuses: WordBool; safecall;
-    procedure Set_CanBePaidByBonuses(pRetVal: WordBool); safecall;
+    function Get_MaxDiscount: Double; safecall;
+    procedure Set_MaxDiscount(pRetVal: Double); safecall;
+    function Get_MaxBonusPayment: Double; safecall;
+    procedure Set_MaxBonusPayment(pRetVal: Double); safecall;
     property ProductCode: WideString read Get_ProductCode write Set_ProductCode;
-    property MinPrice: Double read Get_MinPrice write Set_MinPrice;
-    property CanBePaidByBonuses: WordBool read Get_CanBePaidByBonuses write Set_CanBePaidByBonuses;
+    property MaxDiscount: Double read Get_MaxDiscount write Set_MaxDiscount;
+    property MaxBonusPayment: Double read Get_MaxBonusPayment write Set_MaxBonusPayment;
   end;
 
 // *********************************************************************//
@@ -576,8 +572,8 @@ type
   IProductLimitDisp = dispinterface
     ['{0FDBC7F1-C390-41D1-8C3B-8FC7CBBC5083}']
     property ProductCode: WideString dispid 0;
-    property MinPrice: Double dispid 1;
-    property CanBePaidByBonuses: WordBool dispid 2;
+    property MaxDiscount: Double dispid 1;
+    property MaxBonusPayment: Double dispid 2;
   end;
 
 // *********************************************************************//
