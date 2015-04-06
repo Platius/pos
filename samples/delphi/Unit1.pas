@@ -1,4 +1,4 @@
-unit Unit1;
+п»їunit Unit1;
 
 interface
 
@@ -36,9 +36,9 @@ begin
   i_startupParams := CoStartupParams.Create();
   i_Flow := CoWorkflowImpl.Create();
 
-  //Инициализация
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   i_startupParams.Host := 'msk-dborisov.resto.lan';
-//  i_startupParams.Host := 'www4.iiko.net';
+//  i_startupParams.Host := 'http://www4.iiko.net:9010';
   i_startupParams.Login := '7796';
   i_startupParams.Password := '7796';
   i_startupParams.TerminalId := 'POS-1';
@@ -87,16 +87,16 @@ begin
   discountsFlag := false;
   paymentsFlag := false;
   try
-    //идентификация клиента
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     userPhone := '+79169059546';
 
-    //новый счет
+    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     i_order := i_Flow.CreateOrder();
     guid := i_Flow.NewGuid;
     i_order.Id := guid;
     i_order.Number := '444';
 
-    //позиции
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     for i := 1 to 3 do begin
       i_item := i_Flow.CreateOrderItem();
       i_item.ProductCode := IntToStr(i*100) + '100';
@@ -108,14 +108,14 @@ begin
       i_item.ProductCategory := 'Category'  + IntToStr(i);
       i_order.AddItem(i_item);
     end;
-    //общая сумма счета
+    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     i_order.Sum := 6212;
-    //общая сумма счета с учетом скидок ресторана
+    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     i_order.SumAfterDiscount := 6106;
 
     minSum := i_order.Sum;
 
-    //ограничения
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     i_productLimits := i_Flow.CreateParamsCollection();
     i_productLimit := i_Flow.CreateProductLimit();
     i_productLimit.ProductCode := '100100';
@@ -125,21 +125,21 @@ begin
 
     i_productLimit := i_Flow.CreateProductLimit();
     i_productLimit.ProductCode := '200100';
-    //алкоголь не может быть оплачен бонусами
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     i_productLimit.MaxBonusPayment := 0;
-    //цена не может стать менньше указанной величины
-    //можно ли ее не вообще не указывать, что будет?
+    //пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ?
     i_productLimit.MaxDiscount := 100;
     i_productLimits.Add(i_productLimit);
 
-    //проводим счет
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     i_checkinResult := i_Flow.Checkin(userPhone, 1, i_order, i_productLimits);
-    // день рождения
+    // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     if (i_checkinResult.UserData.GetBirthday = Now) then
       ShowMessage('Happy birthday to you, dear ' + i_checkinResult.UserData.FullName);
 
     i_checkinResult := i_Flow.Precheque(i_order, i_productLimits);
-    //перебираем полученный от iiko скидки на позиции
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ iiko пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     for i := 0 to i_checkinResult.LoyaltyResult.Programs.Count - 1 do begin
 
       i_programResult := i_checkinResult.LoyaltyResult.Programs.Get(i) as ILoyaltyProgramResult;
@@ -147,46 +147,46 @@ begin
       for j := 0 to i_programResult.Operations.Count - 1 do begin
         i_operation := i_programResult.Operations.Get(i) as ILoyaltyOperation;
         productCode := i_operation.ProductCode;
-        //i_operation.Code надо запомнить в скидке на позицию
+        //i_operation.Code пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         discountCode := i_operation.Code;
         discountSum := i_operation.DiscountSum;
-        //флаг - есть ли скидки от айки
+        //пїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
         discountsFlag := discountsFlag or (discountSum <> 0);
       end;
     end;
 
-    //флаг - есть ли скидки от айки
+    //пїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
     discountsFlag := discountsFlag or (discountSum <> 0);
 
-    //кошельки
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     paymentLimits := i_checkinResult.PaymentLimits;
     for i := 0 to paymentLimits.Count - 1 do begin
        i_paymentLimit := paymentLimits.Get(i) as IPaymentLimit;
-       //код кошелька
+       //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
        walletCode := i_paymentLimit.WalletCode;
-       //лимиты
+       //пїЅпїЅпїЅпїЅпїЅпїЅ
        minSum := i_paymentLimit.MinSum;
        maxSum := i_paymentLimit.MaxSum;
        paymentsFlag := paymentsFlag or (maxSum <> 0);
     end;
 
-    //выяснение, есть ли у него средства, и может ли он ими платить
-    //тут где-то диалог о том, будет ли он платить бонусами и с какого кошелька или нет
-    //если платит бонусами хотя бы часть, то выполняем
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    //пїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ
+    //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-    paymentsFlag := paymentsFlag and (MessageBox(0, 'Будете расплачиваться бонусами', '', MB_YESNO) = ID_YES);
-    //если есть в счете скидки от iiko или клиент будет платить via  iiko.net, то проводим оплату
+    paymentsFlag := paymentsFlag and (MessageBox(0, 'пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', '', MB_YESNO) = ID_YES);
+    //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ iiko пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ via  iiko.net, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     if (discountsFlag or paymentsFlag) then begin
       guid := i_order.Id;
       transactionGuid := i_Flow.NewGuid;
       i_payments := i_Flow.CreateParamsCollection();
       if (paymentsFlag) then begin
-        //снимаем средства с указанного клиентом кошелька(кошельков)
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
         i_walletPayment := i_Flow.CreateWalletPayment();
         i_walletPayment.WalletCode := WalletCode_Bonus;
         i_walletPayment.Sum := 1;
         i_payments.Add(i_walletPayment);
-        //снимаем средства с указанного клиентом кошелька(кошельков)
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
         i_walletPayment := i_Flow.CreateWalletPayment();
         i_walletPayment.WalletCode := WalletCode_PaymentCard;
         i_walletPayment.Sum := 2;
@@ -194,7 +194,7 @@ begin
       end;
       i_discounts := i_Flow.CreateParamsCollection();
       if discountsFlag then begin
-        //передаем в iiko обратно примененные скидки
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ iiko пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         i_appliedDiscount := i_Flow.CreateAppliedDiscount();
         i_appliedDiscount.OperationCode := discountCode;
         i_appliedDiscount.ProductCode := '100100';
@@ -206,26 +206,26 @@ begin
         i_appliedDiscount.Sum := 0.3;
         i_discounts.Add(i_appliedDiscount);
       end;
-      //сама операция платежа/снятия средств
+      //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
       i_Flow.Pay(guid, transactionGuid, i_payments, i_discounts);
     end;
 
-    //тут где-то оплаты недостающих сумм
+    //пїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
-    //закрываем счет по iiko
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ iiko
     i_order.SetFiscalChequeNumber(223);
-    i_order.CashierName := 'Иванова Ивонна';
-    i_order.RestarauntSectionName := 'Зал 1';
+    i_order.CashierName := 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ';
+    i_order.RestarauntSectionName := 'пїЅпїЅпїЅ 1';
     i_order.TableNumber := '7';
 
-    i_closeResult := i_Flow.Close(i_order.Id, 100);
+    i_closeResult := i_Flow.Close(guid, 100);
 
     chequeFooter := i_closeResult.ChequeFooter;
 
-    //закрываем свой счет, печатаем дополнительный текст
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     ShowMessage(chequeFooter);
 
-    //ShowMessage('Все Ok');
+    //ShowMessage('пїЅпїЅпїЅ Ok');
   finally
     i_order := nil;
     i_checkinResult :=  nil;
@@ -265,13 +265,13 @@ var
   ClientId : String;
 begin
   try
-    //новый счет,
+    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ,
     i_order := i_Flow.CreateOrder();
     guid := i_Flow.NewGuid;
     i_order.Id := guid;
     i_order.Number := '444';
 
-    //позиции
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     for i := 1 to 3 do begin
       i_item := i_Flow.CreateOrderItem();
       i_item.ProductCode := IntToStr(i*100) + '100';
@@ -283,13 +283,13 @@ begin
       i_item.ProductCategory := 'Category'  + IntToStr(i);
       i_order.AddItem(i_item);
     end;
-    //общая сумма счета
+    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     i_order.Sum := 6212;
-    //общая сумма счета с учетом скидок ресторана
+    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     i_order.SumAfterDiscount := 6106;
 
 
-   //ограничения
+   //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     i_productLimits := i_Flow.CreateParamsCollection();
     i_productLimit := i_Flow.CreateProductLimit();
     i_productLimit.ProductCode := '100100';
@@ -299,38 +299,38 @@ begin
 
     i_productLimit := i_Flow.CreateProductLimit();
     i_productLimit.ProductCode := '200100';
-    //алкоголь не может быть оплачен бонусами
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     i_productLimit.MaxBonusPayment := 0;
-    //цена не может стать менньше указанной величины
-    //можно ли ее не вообще не указывать, что будет?
+    //пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ?
     i_productLimit.MaxDiscount := 100;
     i_productLimits.Add(i_productLimit);
 
-    //проводим счет
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     i_checkinResult := i_Flow.Precheque(i_order, i_productLimits);
     //operations := i_complexFlow.GetPayments(nil);
-    ShowMessage('Пречек: ' + i_checkinResult.ChequeFooter);
+    ShowMessage('пїЅпїЅпїЅпїЅпїЅпїЅ: ' + i_checkinResult.ChequeFooter);
 
-    //перебираем полученные от iiko скидки на позиции
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ iiko пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     if i_checkinResult.LoyaltyResult.Programs <> nil then begin
       for i := 0 to i_checkinResult.LoyaltyResult.Programs.Count - 1 do begin
          i_programResult := i_checkinResult.LoyaltyResult.Programs.Get(i) as ILoyaltyProgramResult;
          for j := 0 to i_programResult.Operations.Count - 1 do begin
            i_operation := i_programResult.Operations.Get(j) as ILoyaltyOperation;
            productCode := i_operation.ProductCode;
-           //i_operation.OperationId надо запомнить в скидке на позицию
+           //i_operation.OperationId пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
            discountId := i_operation.Code;
            discountSum := i_operation.DiscountSum;
-           //флаг - есть ли скидки от айки
+           //пїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
            discountsFlag := discountsFlag or (discountSum <> 0);
          end
       end;
     end;
-    //флаг - есть ли скидки от айки
+    //пїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
     discountsFlag := discountsFlag or (discountSum <> 0);
 
 
-    //есть ли оплаты, уже произведенные клиентом
+    //пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     if i_checkinResult.payments <> nil then begin
       for i := 0 to i_checkinResult.payments.Count - 1 do begin
          i_walletPayment := i_checkinResult.payments.Get(i) as IWalletPayment;
@@ -344,12 +344,12 @@ begin
       transactionGuid := i_Flow.NewGuid;
       i_payments := i_Flow.CreateParamsCollection();
       if (paymentsFlag) then begin
-        //снимаем средства с указанного клиентом кошелька(кошельков)
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
         i_walletPayment := i_Flow.CreateWalletPayment();
         i_walletPayment.WalletCode := WalletCode_Bonus;
         i_walletPayment.Sum := 100;
         i_payments.Add(i_walletPayment);
-        //снимаем средства с указанного клиентом кошелька(кошельков)
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
         i_walletPayment := i_Flow.CreateWalletPayment();
         i_walletPayment.WalletCode := WalletCode_PaymentCard;
         i_walletPayment.Sum := 200;
@@ -357,7 +357,7 @@ begin
       end;
       i_discounts := i_Flow.CreateParamsCollection();
       if discountsFlag then begin
-        //передаем в iiko обратно примененные скидки
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ iiko пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         i_appliedDiscount := i_Flow.CreateAppliedDiscount();
         i_appliedDiscount.OperationCode := 'Discount 1';
         i_appliedDiscount.ProductCode := '100100';
@@ -370,21 +370,21 @@ begin
         i_appliedDiscount.Sum := 0.3;
         i_discounts.Add(i_appliedDiscount);
       end;
-      //сама операция платежа/снятия средств
+      //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
       i_Flow.Pay(guid, transactionGuid, i_payments, i_discounts);
     end;
 
-    //тут где-то оплаты недостающих сумм
+    //пїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
-    //закрываем счет по iiko
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ iiko
     i_order.SetFiscalChequeNumber(223);
-    i_order.CashierName := 'Иванова Ивонна';
-    i_order.RestarauntSectionName := 'Зал 1';
+    i_order.CashierName := 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ';
+    i_order.RestarauntSectionName := 'пїЅпїЅпїЅ 1';
     i_order.TableNumber := '7';
 
     i_closeResult := i_Flow.Close(i_order.Id, 100);
-    //закрываем свой счет, печатаем дополнительный текст
-    ShowMessage('Чек: ' + i_closeResult.ChequeFooter);
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+    ShowMessage('пїЅпїЅпїЅ: ' + i_closeResult.ChequeFooter);
   finally
     i_checkinResult :=  nil;
     i_order := nil;

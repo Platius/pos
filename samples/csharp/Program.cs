@@ -14,7 +14,7 @@ namespace Client
             // Задаем параметры, с которыми будет работать клиентская библиотека iiko.net
             var startupParams = new StartupParams
             {
-                Host = "www4.iiko.net",
+                Host = "http://www4.iiko.net:9010",
                 Login = "1714",
                 Password = "1714",
                 SyncCallTimeoutSec = 15*60,

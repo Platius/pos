@@ -3,7 +3,7 @@ Option Explicit
 'Init
 Dim startupParams
 Set startupParams = CreateObject("iikoNet.Service.Api.Front.v2.Client.StartupParams")
-startupParams.Host = "www4.iiko.net"
+startupParams.Host = "http://www4.iiko.net:9010"
 startupParams.Login = "5536"
 startupParams.Password = "5536"
 startupParams.SyncCallTimeoutSec = 15
@@ -85,6 +85,6 @@ Call flow.Pay(order.Id, flow.NewGuid, payments, discounts)
 
 'Close
 Dim closeResult
-Set closeResult = flow.Close(order, 100)
+Set closeResult = flow.Close(order.Id, 100)
 
 MsgBox (startupParams.Host)

@@ -20,7 +20,7 @@ namespace Refund
             // Задаем параметры, с которыми будет работать клиентская библиотека
             var startupParams = new StartupParams
             {
-                Host = "www4.iiko.net",
+                Host = "http://www4.iiko.net:9010",
                 Login = "1714",
                 Password = "1714",
                 SyncCallTimeoutSec = 15*60,
@@ -74,7 +74,7 @@ namespace Refund
                 // new WalletPayment {WalletCode = Consts.PaymentCardWalletCode, Sum = cardPayment} //В данном примере оплата картой закомментирована, потому что нельзя платить картой с таким способом авторизации.
             }, null);
             //Закрываем заказ - без этого рефанд работать не будет
-            flow.Close(order, cardPayment);
+            flow.Close(order.Id, cardPayment);
 
             #endregion
 
