@@ -2,8 +2,8 @@ Option Explicit
 
 'Init
 Dim startupParams
-Set startupParams = CreateObject("iikoNet.Service.Api.Front.v2.Client.StartupParams")
-startupParams.Host = "http://www4.iiko.net:9010"
+Set startupParams = CreateObject("Platius.Service.Api.Front.v2.Client.StartupParams")
+startupParams.Host = "http://www4.platius.ru:9010"
 startupParams.Login = "5536"
 startupParams.Password = "5536"
 startupParams.SyncCallTimeoutSec = 15
@@ -17,7 +17,7 @@ startupParams.ProductVersion = "<ProductVersion>"
 startupParams.PluginVersion = "<ProductVersion>"
 
 Dim flow
-Set flow = CreateObject("iikoNet.Service.Api.Front.v2.Client.Extensions.WorkflowDummy")
+Set flow = CreateObject("Platius.Service.Api.Front.v2.Client.Extensions.WorkflowDummy")
 flow.Initialize (startupParams)
 
 'Checkin
@@ -50,8 +50,7 @@ order.AddItem(item2)
 Dim productLimit
 Set productLimit = flow.CreateProductLimit()
 productLimit.ProductCode = "100100"
-productLimit.CanBePaidByBonuses = false
-productLimit.MinPrice = 500
+productLimit.MaxBonusPayment = 500
 
 Dim limits
 Set limits = flow.CreateParamsCollection()
@@ -73,6 +72,7 @@ payments.Add(walletPayment)
 
 Dim appliedDiscount
 Set appliedDiscount = flow.CreateAppliedDiscount()
+appliedDiscount.ProgramId = flow.NewGuid
 appliedDiscount.OperationCode = "Test"
 appliedDiscount.ProductCode = "123"
 appliedDiscount.Sum = 100

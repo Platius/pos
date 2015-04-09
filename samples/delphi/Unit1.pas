@@ -36,8 +36,7 @@ begin
   i_startupParams := CoStartupParams.Create();
   i_Flow := CoWorkflowImpl.Create();
 
-  i_startupParams.Host := 'msk-dborisov.resto.lan';
-//  i_startupParams.Host := 'http://www4.iiko.net:9010';
+  i_startupParams.Host := 'http://www4.platius.ru:9010';
   i_startupParams.Login := '7796';
   i_startupParams.Password := '7796';
   i_startupParams.TerminalId := 'POS-1';
@@ -61,14 +60,15 @@ var
   i_order : IOrder;
   Index: Integer;
   i_checkinResult : ICheckinResult;
-  guid, transactionGuid : TGuid;
+  guid, transactionGuid : String;
   Sum : Currency;
   i_userdata : IUserData;
   walletCode : byte;
   discountCode, fullName, productCode, chequeFooter : widestring;
   i_productLimits : IParamsCollection;
   i_loyalityResult : ILoyaltyResult;
-  operations, paymentLimits  : IResultsCollection;
+  operations : ILoyaltyOperationCollection;
+  paymentLimits  : IPaymentLimitCollection;
   i_operation : ILoyaltyOperation;
   i_programResult : ILoyaltyProgramResult;
   i_paymentLimit : IPaymentLimit;
@@ -122,7 +122,7 @@ begin
     i_productLimit.MaxDiscount := 100;
     i_productLimits.Add(i_productLimit);
 
-    i_checkinResult := i_Flow.Checkin(userPhone, 1, i_order, i_productLimits);
+    i_checkinResult := i_Flow.Checkin(userPhone, UserSearchScope_Phone, i_order, i_productLimits);
     if (i_checkinResult.UserData.GetBirthday = Now) then
       ShowMessage('Happy birthday to you, dear ' + i_checkinResult.UserData.FullName);
 
@@ -206,14 +206,15 @@ var
   i_order : IOrder;
   Index: Integer;
   i_checkinResult : ICheckinResult;
-  guid, transactionGuid : TGuid;
+  guid, transactionGuid : String;
   Sum : Currency;
   i_userdata : IUserData;
   walletCode : byte;
   fullName, productCode, chequeFooter : widestring;
   i_productLimits : IParamsCollection;
   i_loyalityResult : ILoyaltyResult;
-  operations, paymentLimits  : IResultsCollection;
+  operations : ILoyaltyOperationCollection;
+  paymentLimits  : IPaymentLimitCollection;
   i_programResult : ILoyaltyProgramResult;
   i_operation : ILoyaltyOperation;
   i_paymentLimit : IPaymentLimit;
