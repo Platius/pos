@@ -86,7 +86,7 @@ begin
   discountsFlag := false;
   paymentsFlag := false;
   try
-    userPhone := '+79169059546';
+    userPhone := '+70000000002';
 
     i_order := i_Flow.CreateOrder();
     guid := i_Flow.NewGuid;
@@ -161,10 +161,6 @@ begin
         i_walletPayment.WalletCode := WalletCode_Bonus;
         i_walletPayment.Sum := 1;
         i_payments.Add(i_walletPayment);
-        i_walletPayment := i_Flow.CreateWalletPayment();
-        i_walletPayment.WalletCode := WalletCode_PaymentCard;
-        i_walletPayment.Sum := 2;
-        i_payments.Add(i_walletPayment);
       end;
       i_discounts := i_Flow.CreateParamsCollection();
       if discountsFlag then begin
@@ -186,7 +182,7 @@ begin
     i_order.SetFiscalChequeNumber(223);
     i_order.TableNumber := '7';
 
-
+    i_closeResult := i_Flow.Close(i_order.Id, 100);
     chequeFooter := i_closeResult.ChequeFooter;
 
     ShowMessage(chequeFooter);
@@ -318,7 +314,7 @@ begin
         i_appliedDiscount.Sum := 0.3;
         i_discounts.Add(i_appliedDiscount);
       end;
-      i_Flow.Pay(guid, transactionGuid, i_payments, i_discounts);
+      i_Flow.Pay(i_order.Id, transactionGuid, i_payments, i_discounts);
     end;
 
 

@@ -12,10 +12,10 @@ unit Platius_Service_Api_Front_v2_Client_TLB;
 // ************************************************************************ //
 
 // PASTLWTR : 1.2
-// File generated on 10.04.2015 13:27:49 from Type Library described below.
+// File generated on 13.04.2015 17:34:35 from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: D:\PlatiusGithub\Client\Platius.Service.Api.Front.v2.Client.tlb (1)
+// Type Lib: D:\PlatiusGithub\pos\bin\Client\Platius.Service.Api.Front.v2.Client.tlb (1)
 // LIBID: {730D7675-109C-45AF-987C-64F46561454C}
 // LCID: 0
 // Helpfile: 
@@ -208,8 +208,8 @@ type
     function CreateWalletRefund: IWalletRefund; dispid 7;
     function CreateCancelledOrderItem: ICancelledOrderItem; dispid 8;
     procedure Initialize(const StartupParams: IStartupParams); dispid 100;
-    function Checkin(const credential: WideString; searchScope: Byte; const order: IOrder; 
-                     const limits: IParamsCollection): ICheckinResult; dispid 101;
+    function Checkin(const credential: WideString; searchScope: UserSearchScope; 
+                     const order: IOrder; const limits: IParamsCollection): ICheckinResult; dispid 101;
     procedure Pay(const orderId: WideString; const transactionId: WideString; 
                   const payments: IParamsCollection; const discounts: IParamsCollection); dispid 102;
     function Refund(const orderId: WideString; const transactionId: WideString; 
@@ -351,7 +351,7 @@ type
 // *********************************************************************//
   IPaymentLimit = dispinterface
     ['{C9ACB0C5-2398-4C1D-B737-155E6E075650}']
-    property WalletCode: Byte dispid 0;
+    property WalletCode: WalletCode dispid 0;
     property MinSum: Double dispid 1;
     property MaxSum: Double dispid 2;
   end;
@@ -387,7 +387,7 @@ type
 // *********************************************************************//
   IWalletPayment = dispinterface
     ['{D2DC8B0E-2501-41F9-8061-9CEFBAC1E6D4}']
-    property WalletCode: Byte dispid 0;
+    property WalletCode: WalletCode dispid 0;
     property Sum: Double dispid 1;
   end;
 
@@ -398,7 +398,7 @@ type
 // *********************************************************************//
   IWalletRefund = dispinterface
     ['{DFCE4062-7498-4802-B1E7-A9131997BE17}']
-    property WalletCode: Byte dispid 0;
+    property WalletCode: WalletCode dispid 0;
     property Sum: Double dispid 1;
   end;
 
