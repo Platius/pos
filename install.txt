@@ -12,3 +12,10 @@ TODO
 
 = Режим web-сервиса =
 TODO
+
+Путь к установленным файлам Platius
+===================================
+Инсталлятор пишет путь к файлам плагина Platius в реестр:
+Установочный путь расположен в реестре по адресу:
+Для 32-разрядных приложений: HKEY_LOCAL_MACHINE\Software\Platius\ApiClientPath
+Для 64-разрядных приложений: HKEY_LOCAL_MACHINE\Software\Wow6432Node\Platius\ApiClientPath
