@@ -12,10 +12,10 @@ unit Platius_Service_Api_Front_v2_Client_TLB;
 // ************************************************************************ //
 
 // PASTLWTR : 1.2
-// File generated on 13.04.2015 17:34:35 from Type Library described below.
+// File generated on 17.04.2015 21:39:10 from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: D:\PlatiusGithub\pos\bin\Client\Platius.Service.Api.Front.v2.Client.tlb (1)
+// Type Lib: F:\pos-api-sdk\bin\Client\Platius.Service.Api.Front.v2.Client.tlb (1)
 // LIBID: {730D7675-109C-45AF-987C-64F46561454C}
 // LCID: 0
 // Helpfile: 
@@ -48,6 +48,9 @@ const
 
   LIBID_Platius_Service_Api_Front_v2_Client: TGUID = '{730D7675-109C-45AF-987C-64F46561454C}';
 
+  DIID_INotification: TGUID = '{4B15F48D-D316-40FE-B6FE-93426ACB8DA8}';
+  DIID_INotificationCollection: TGUID = '{09D52E06-5CAA-4675-A911-E32F85C02FCD}';
+  DIID_IPaymentNotification: TGUID = '{EA3AF29E-E4CC-45C7-8000-45E8D65A0075}';
   DIID_IOrderPaymentsCollection: TGUID = '{611EC775-EF14-496F-AE1D-3655BE6F2736}';
   DIID_ILoyaltyOperationCollection: TGUID = '{80CFC198-43B7-4368-85FB-38F44C5DBEAC}';
   DIID_ILoyaltyProgramResultCollection: TGUID = '{831B55A0-BA50-4782-9D75-FF98BED65C80}';
@@ -102,6 +105,9 @@ type
 // *********************************************************************//
 // Forward declaration of types defined in TypeLibrary                    
 // *********************************************************************//
+  INotification = dispinterface;
+  INotificationCollection = dispinterface;
+  IPaymentNotification = dispinterface;
   IOrderPaymentsCollection = dispinterface;
   ILoyaltyOperationCollection = dispinterface;
   ILoyaltyProgramResultCollection = dispinterface;
@@ -135,6 +141,45 @@ type
   WorkflowImpl = IWorkflow;
   StartupParams = IStartupParams;
 
+
+// *********************************************************************//
+// DispIntf:  INotification
+// Flags:     (4096) Dispatchable
+// GUID:      {4B15F48D-D316-40FE-B6FE-93426ACB8DA8}
+// *********************************************************************//
+  INotification = dispinterface
+    ['{4B15F48D-D316-40FE-B6FE-93426ACB8DA8}']
+    property Id: WideString readonly dispid 0;
+    property OrderId: WideString readonly dispid 1;
+    property CreatedOn: TDateTime readonly dispid 2;
+    property NotificationType: Integer readonly dispid 3;
+    property UserData: IUserData readonly dispid 4;
+    property Message: WideString readonly dispid 5;
+    function AsPaymentNotification: IPaymentNotification; dispid 101;
+  end;
+
+// *********************************************************************//
+// DispIntf:  INotificationCollection
+// Flags:     (4096) Dispatchable
+// GUID:      {09D52E06-5CAA-4675-A911-E32F85C02FCD}
+// *********************************************************************//
+  INotificationCollection = dispinterface
+    ['{09D52E06-5CAA-4675-A911-E32F85C02FCD}']
+    property Count: Integer readonly dispid 0;
+    function Get(index: Integer): INotification; dispid 1;
+  end;
+
+// *********************************************************************//
+// DispIntf:  IPaymentNotification
+// Flags:     (4096) Dispatchable
+// GUID:      {EA3AF29E-E4CC-45C7-8000-45E8D65A0075}
+// *********************************************************************//
+  IPaymentNotification = dispinterface
+    ['{EA3AF29E-E4CC-45C7-8000-45E8D65A0075}']
+    property Payments: IWalletPaymentCollection readonly dispid 0;
+    property IsPaid: WordBool readonly dispid 1;
+    property SumToPay: Double readonly dispid 2;
+  end;
 
 // *********************************************************************//
 // DispIntf:  IOrderPaymentsCollection
@@ -210,16 +255,17 @@ type
     procedure Initialize(const StartupParams: IStartupParams); dispid 100;
     function Checkin(const credential: WideString; searchScope: UserSearchScope; 
                      const order: IOrder; const limits: IParamsCollection): ICheckinResult; dispid 101;
-    procedure Pay(const orderId: WideString; const transactionId: WideString; 
-                  const payments: IParamsCollection; const discounts: IParamsCollection); dispid 102;
-    function Refund(const orderId: WideString; const transactionId: WideString; 
+    procedure Pay(const OrderId: WideString; const transactionId: WideString; 
+                  const Payments: IParamsCollection; const discounts: IParamsCollection); dispid 102;
+    function Refund(const OrderId: WideString; const transactionId: WideString; 
                     const refunds: IParamsCollection; const cancelledItems: IParamsCollection): IRefundResult; dispid 104;
-    function Close(const orderId: WideString; sumForBonus: Double): ICloseResult; dispid 105;
-    procedure Abort(const orderId: WideString); dispid 106;
-    procedure Reset(const orderId: WideString); dispid 107;
+    function Close(const OrderId: WideString; sumForBonus: Double): ICloseResult; dispid 105;
+    procedure Abort(const OrderId: WideString); dispid 106;
+    procedure Reset(const OrderId: WideString); dispid 107;
     function UpdateOrder(const order: IOrder; const limits: IParamsCollection): ICheckinResult; dispid 200;
     function Precheque(const order: IOrder; const limits: IParamsCollection): ICheckinResult; dispid 202;
     function GetPayments(const orderIds: IParamsCollection): IOrderPaymentsCollection; dispid 201;
+    function GetNotifications(const orderIds: IParamsCollection): INotificationCollection; dispid 203;
   end;
 
 // *********************************************************************//
@@ -330,8 +376,8 @@ type
 // *********************************************************************//
   IOrderPayments = dispinterface
     ['{996A75C2-87A3-4D20-B89C-9DD7F1F7E61D}']
-    property orderId: WideString readonly dispid 0;
-    property payments: IWalletPaymentCollection readonly dispid 1;
+    property OrderId: WideString readonly dispid 0;
+    property Payments: IWalletPaymentCollection readonly dispid 1;
   end;
 
 // *********************************************************************//
@@ -435,7 +481,7 @@ type
     property UserData: IUserData readonly dispid 0;
     property LoyaltyResult: ILoyaltyResult readonly dispid 1;
     property PaymentLimits: IPaymentLimitCollection readonly dispid 2;
-    property payments: IWalletPaymentCollection readonly dispid 3;
+    property Payments: IWalletPaymentCollection readonly dispid 3;
     property ChequeFooter: WideString readonly dispid 4;
   end;
 
