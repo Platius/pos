@@ -33,4 +33,13 @@ object Form1: TForm1
     TabOrder = 1
     OnClick = btnBasicClick
   end
+  object btnGetNotifications: TButton
+    Left = 16
+    Top = 48
+    Width = 121
+    Height = 25
+    Caption = 'GetNotifications'
+    TabOrder = 2
+    OnClick = btnGetNotificationsClick
+  end
 end
