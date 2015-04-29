@@ -165,19 +165,24 @@ begin
           i_walletPayment.Sum := 1;
           i_payments.Add(i_walletPayment);
         end;
+
         i_discounts := i_Flow.CreateParamsCollection();
         if discountsFlag then begin
-          i_appliedDiscount := i_Flow.CreateAppliedDiscount();
-          i_appliedDiscount.OperationCode := discountCode;
-          i_appliedDiscount.ProductCode := '100100';
-          i_appliedDiscount.Sum := 0.5;
-          i_discounts.Add(i_appliedDiscount);
-
-          i_appliedDiscount := i_Flow.CreateAppliedDiscount();
-          i_appliedDiscount.ProductCode := '100100';
-          i_appliedDiscount.Sum := 0.3;
-          i_discounts.Add(i_appliedDiscount);
+          for i := 0 to i_checkinResult.LoyaltyResult.Programs.Count - 1 do begin
+            i_programResult := i_checkinResult.LoyaltyResult.Programs.Get(i) as ILoyaltyProgramResult;
+            for j := 0 to i_programResult.Operations.Count - 1 do begin
+              i_operation := i_programResult.Operations.Get(i) as ILoyaltyOperation;
+              i_appliedDiscount := i_Flow.CreateAppliedDiscount();
+              i_appliedDiscount.ProgramId := i_programResult.ProgramId;
+              i_appliedDiscount.OperationCode := i_operation.Code;
+              i_appliedDiscount.ProductCode := i_operation.ProductCode;
+              i_appliedDiscount.ProductName := i_operation.ProductName;
+              i_appliedDiscount.Sum := i_operation.DiscountSum;
+              i_discounts.Add(i_appliedDiscount);
+            end;
+          end;
         end;
+
         i_Flow.Pay(guid, transactionGuid, i_payments, i_discounts);
       end;
 
@@ -307,20 +312,24 @@ begin
           i_walletPayment.Sum := 200;
           i_payments.Add(i_walletPayment);
         end;
+
         i_discounts := i_Flow.CreateParamsCollection();
         if discountsFlag then begin
-          i_appliedDiscount := i_Flow.CreateAppliedDiscount();
-          i_appliedDiscount.OperationCode := 'Discount 1';
-          i_appliedDiscount.ProductCode := '100100';
-          i_appliedDiscount.Sum := 0.5;
-          i_discounts.Add(i_appliedDiscount);
-
-          i_appliedDiscount := i_Flow.CreateAppliedDiscount();
-          i_appliedDiscount.OperationCode := 'Discount 2';
-          i_appliedDiscount.ProductCode := '100100';
-          i_appliedDiscount.Sum := 0.3;
-          i_discounts.Add(i_appliedDiscount);
+          for i := 0 to i_checkinResult.LoyaltyResult.Programs.Count - 1 do begin
+            i_programResult := i_checkinResult.LoyaltyResult.Programs.Get(i) as ILoyaltyProgramResult;
+            for j := 0 to i_programResult.Operations.Count - 1 do begin
+              i_operation := i_programResult.Operations.Get(i) as ILoyaltyOperation;
+              i_appliedDiscount := i_Flow.CreateAppliedDiscount();
+              i_appliedDiscount.ProgramId := i_programResult.ProgramId;
+              i_appliedDiscount.OperationCode := i_operation.Code;
+              i_appliedDiscount.ProductCode := i_operation.ProductCode;
+              i_appliedDiscount.ProductName := i_operation.ProductName;
+              i_appliedDiscount.Sum := i_operation.DiscountSum;
+              i_discounts.Add(i_appliedDiscount);
+            end;
+          end;
         end;
+        
         i_Flow.Pay(i_order.Id, transactionGuid, i_payments, i_discounts);
       end;
 
