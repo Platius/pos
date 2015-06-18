@@ -12,10 +12,10 @@ unit Platius_Service_Api_Front_v2_Client_TLB;
 // ************************************************************************ //
 
 // PASTLWTR : 1.2
-// File generated on 26.05.2015 16:31:44 from Type Library described below.
+// File generated on 18.06.2015 17:52:41 from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: F:\platius-review\dev\CardService\Api\Front\v2\iikoNet.Service.Api.Front.v2.Client\bin\Debug\Platius.Service.Api.Front.v2.Client.tlb (1)
+// Type Lib: F:\platius\dev\CardService\Api\Front\v2\iikoNet.Service.Api.Front.v2.Client\bin\Debug\Platius.Service.Api.Front.v2.Client.tlb (1)
 // LIBID: {730D7675-109C-45AF-987C-64F46561454C}
 // LCID: 0
 // Helpfile: 
@@ -254,6 +254,7 @@ type
     function CreateCancelledOrderItem: ICancelledOrderItem; dispid 8;
     property IsOnline: WordBool readonly dispid 99;
     procedure Initialize(const StartupParams: IStartupParams); dispid 100;
+    procedure UnInitialize; dispid 1000;
     function Checkin(const credential: WideString; searchScope: UserSearchScope; 
                      const order: IOrder; const limits: IParamsCollection): ICheckinResult; dispid 101;
     procedure Pay(const OrderId: WideString; const transactionId: WideString; 

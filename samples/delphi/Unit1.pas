@@ -15,6 +15,7 @@ type
     procedure btnComplexClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnGetNotificationsClick(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
   private
     { Private declarations }
     i_Flow : IWorkflow;
@@ -360,6 +361,11 @@ begin
     on E: Exception do
       ShowMessage(E.ClassName + ' - error: ' + E.Message);
   end;
+end;
+
+procedure TForm1.FormDestroy(Sender: TObject);
+begin
+  i_Flow.UnInitialize();
 end;
 
 initialization
