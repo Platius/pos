@@ -12,10 +12,10 @@ unit Platius_Service_Api_Front_v2_Client_TLB;
 // ************************************************************************ //
 
 // PASTLWTR : 1.2
-// File generated on 17.04.2015 21:39:10 from Type Library described below.
+// File generated on 26.05.2015 16:31:44 from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: F:\pos-api-sdk\bin\Client\Platius.Service.Api.Front.v2.Client.tlb (1)
+// Type Lib: F:\platius-review\dev\CardService\Api\Front\v2\iikoNet.Service.Api.Front.v2.Client\bin\Debug\Platius.Service.Api.Front.v2.Client.tlb (1)
 // LIBID: {730D7675-109C-45AF-987C-64F46561454C}
 // LCID: 0
 // Helpfile: 
@@ -252,6 +252,7 @@ type
     function CreateAppliedDiscount: IAppliedDiscount; dispid 6;
     function CreateWalletRefund: IWalletRefund; dispid 7;
     function CreateCancelledOrderItem: ICancelledOrderItem; dispid 8;
+    property IsOnline: WordBool readonly dispid 99;
     procedure Initialize(const StartupParams: IStartupParams); dispid 100;
     function Checkin(const credential: WideString; searchScope: UserSearchScope; 
                      const order: IOrder; const limits: IParamsCollection): ICheckinResult; dispid 101;
@@ -469,6 +470,7 @@ type
     property Product: WideString dispid 11;
     property ProductVersion: WideString dispid 12;
     property PluginVersion: WideString dispid 13;
+    property UseXmlCheques: WordBool dispid 14;
   end;
 
 // *********************************************************************//
