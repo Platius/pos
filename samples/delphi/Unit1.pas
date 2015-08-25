@@ -118,12 +118,14 @@ begin
       i_productLimit.ProductCode := '100100';
       i_productLimit.MaxBonusPayment := 100;
       i_productLimit.MaxDiscount := 100;
+      i_productLimit.IsFullAmountLimit := True;
       i_productLimits.Add(i_productLimit);
 
       i_productLimit := i_Flow.CreateProductLimit();
       i_productLimit.ProductCode := '200100';
       i_productLimit.MaxBonusPayment := 0;
       i_productLimit.MaxDiscount := 100;
+      i_productLimit.IsFullAmountLimit := True;
       i_productLimits.Add(i_productLimit);
 
       i_checkinResult := i_Flow.Checkin(userPhone, UserSearchScope_Phone, i_order, i_productLimits);
@@ -265,12 +267,14 @@ begin
       i_productLimit.ProductCode := '100100';
       i_productLimit.MaxBonusPayment := 100;
       i_productLimit.MaxDiscount := 100;
+      i_productLimit.IsFullAmountLimit := True;
       i_productLimits.Add(i_productLimit);
 
       i_productLimit := i_Flow.CreateProductLimit();
       i_productLimit.ProductCode := '200100';
       i_productLimit.MaxBonusPayment := 0;
       i_productLimit.MaxDiscount := 100;
+      i_productLimit.IsFullAmountLimit := True;
       i_productLimits.Add(i_productLimit);
 
       i_checkinResult := i_Flow.Precheque(i_order, i_productLimits);

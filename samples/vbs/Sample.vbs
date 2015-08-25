@@ -51,6 +51,7 @@ Dim productLimit
 Set productLimit = flow.CreateProductLimit()
 productLimit.ProductCode = "100100"
 productLimit.MaxBonusPayment = 500
+productLimit.IsFullAmountLimit = True
 
 Dim limits
 Set limits = flow.CreateParamsCollection()

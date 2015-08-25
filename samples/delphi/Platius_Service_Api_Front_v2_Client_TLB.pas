@@ -414,6 +414,7 @@ type
     property ProductCode: WideString dispid 0;
     property MaxDiscount: Double dispid 1;
     property MaxBonusPayment: Double dispid 2;
+    property IsFullAmountLimit: WordBool dispid 3;
   end;
 
 // *********************************************************************//
