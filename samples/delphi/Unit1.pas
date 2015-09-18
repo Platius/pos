@@ -192,7 +192,7 @@ begin
       i_order.SetFiscalChequeNumber(223);
       i_order.TableNumber := '7';
 
-      i_closeResult := i_Flow.Close(i_order.Id, 100);
+      i_closeResult := i_Flow.CloseOrder(i_order, 100);
       chequeFooter := i_closeResult.ChequeFooter;
 
       ShowMessage(chequeFooter);
@@ -342,7 +342,7 @@ begin
       i_order.SetFiscalChequeNumber(223);
       i_order.TableNumber := '7';
 
-      i_closeResult := i_Flow.Close(i_order.Id, 100);
+      i_closeResult := i_Flow.CloseOrder(i_order, 100);
     except
       on E: Exception do
         ShowMessage(E.ClassName + ' - error: ' + E.Message);

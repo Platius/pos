@@ -86,6 +86,6 @@ Call flow.Pay(order.Id, flow.NewGuid, payments, discounts)
 
 'Close
 Dim closeResult
-Set closeResult = flow.Close(order.Id, 100)
+Set closeResult = flow.CloseOrder(order, 100)
 
 MsgBox (startupParams.Host)
