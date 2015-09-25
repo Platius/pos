@@ -12,7 +12,7 @@ unit Platius_Service_Api_Front_v2_Client_TLB;
 // ************************************************************************ //
 
 // PASTLWTR : 1.2
-// File generated on 18.06.2015 17:52:41 from Type Library described below.
+// File generated on 18.09.2015 21:55:01 from Type Library described below.
 
 // ************************************************************************  //
 // Type Lib: F:\platius\dev\CardService\Api\Front\v2\iikoNet.Service.Api.Front.v2.Client\bin\Debug\Platius.Service.Api.Front.v2.Client.tlb (1)
@@ -268,6 +268,9 @@ type
     function Precheque(const order: IOrder; const limits: IParamsCollection): ICheckinResult; dispid 202;
     function GetPayments(const orderIds: IParamsCollection): IOrderPaymentsCollection; dispid 201;
     function GetNotifications(const orderIds: IParamsCollection): INotificationCollection; dispid 203;
+    procedure BindCardToPhone(const cardTrack: WideString; const phoneNumber: WideString); dispid 204;
+    procedure ActivateUserBinding(const activationCode: WideString); dispid 205;
+    function CloseOrder(const order: IOrder; sumForBonus: Double): ICloseResult; dispid 206;
   end;
 
 // *********************************************************************//
@@ -414,6 +417,7 @@ type
     property ProductCode: WideString dispid 0;
     property MaxDiscount: Double dispid 1;
     property MaxBonusPayment: Double dispid 2;
+    property IsFullAmountLimit: WordBool dispid 3;
   end;
 
 // *********************************************************************//
