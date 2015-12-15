@@ -74,7 +74,7 @@ namespace Refund
                 // new WalletPayment {WalletCode = Consts.PaymentCardWalletCode, Sum = cardPayment} //В данном примере оплата картой закомментирована, потому что нельзя платить картой с таким способом авторизации.
             }, null);
             //Закрываем заказ - без этого рефанд работать не будет
-            flow.Close(order.Id, cardPayment);
+            flow.CloseOrder(order, cardPayment);
 
             #endregion
 
