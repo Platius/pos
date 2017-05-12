@@ -39,7 +39,7 @@ begin
   i_startupParams := CoStartupParams.Create();
   i_Flow := CoWorkflowImpl.Create();
 
-  i_startupParams.Host := 'http://www4.platius.ru:9010';
+  i_startupParams.Host := 'http://www7.plazius.ru:9010';
   i_startupParams.Login := '7796';
   i_startupParams.Password := '7796';
   i_startupParams.TerminalId := 'POS-1';

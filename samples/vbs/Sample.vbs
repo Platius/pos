@@ -3,7 +3,7 @@ Option Explicit
 'Init
 Dim startupParams
 Set startupParams = CreateObject("Platius.Service.Api.Front.v2.Client.StartupParams")
-startupParams.Host = "http://www4.platius.ru:9010"
+startupParams.Host = "http://www7.platius.ru:9010"
 startupParams.Login = "5536"
 startupParams.Password = "5536"
 startupParams.SyncCallTimeoutSec = 15
@@ -17,7 +17,7 @@ startupParams.ProductVersion = "<ProductVersion>"
 startupParams.PluginVersion = "<ProductVersion>"
 
 Dim flow
-Set flow = CreateObject("Platius.Service.Api.Front.v2.Client.Extensions.WorkflowDummy")
+Set flow = CreateObject("Platius.Service.Api.Front.v2.Client.Extensions.Workflow")
 flow.Initialize (startupParams)
 
 'Checkin
