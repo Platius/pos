@@ -12,7 +12,7 @@ unit Platius_Service_Api_Front_v2_Client_TLB;
 // ************************************************************************ //
 
 // PASTLWTR : 1.2
-// File generated on 18.09.2015 21:55:01 from Type Library described below.
+// File generated on 12.05.17 14:52:22 from Type Library described below.
 
 // ************************************************************************  //
 // Type Lib: F:\platius\dev\CardService\Api\Front\v2\iikoNet.Service.Api.Front.v2.Client\bin\Debug\Platius.Service.Api.Front.v2.Client.tlb (1)
@@ -48,17 +48,16 @@ const
 
   LIBID_Platius_Service_Api_Front_v2_Client: TGUID = '{730D7675-109C-45AF-987C-64F46561454C}';
 
-  DIID_INotification: TGUID = '{4B15F48D-D316-40FE-B6FE-93426ACB8DA8}';
-  DIID_INotificationCollection: TGUID = '{09D52E06-5CAA-4675-A911-E32F85C02FCD}';
-  DIID_IPaymentNotification: TGUID = '{EA3AF29E-E4CC-45C7-8000-45E8D65A0075}';
+  DIID_IStartupParams: TGUID = '{2B3E93AD-CFB7-4AEA-81E0-D6D2D360FBE0}';
+  DIID_IBalanceInfo: TGUID = '{A1EA775A-4DB9-4FF0-AA35-B56EB1EF40F5}';
   DIID_IOrderPaymentsCollection: TGUID = '{611EC775-EF14-496F-AE1D-3655BE6F2736}';
   DIID_ILoyaltyOperationCollection: TGUID = '{80CFC198-43B7-4368-85FB-38F44C5DBEAC}';
   DIID_ILoyaltyProgramResultCollection: TGUID = '{831B55A0-BA50-4782-9D75-FF98BED65C80}';
   DIID_IWalletPaymentCollection: TGUID = '{B3BB1D94-F3B1-4BF3-9BB0-230806876039}';
   DIID_IPaymentLimitCollection: TGUID = '{D54ACC24-3D77-4CA1-A688-9E223CD33CFC}';
   DIID_IWorkflow: TGUID = '{A62D03C7-F896-4298-9640-290DFE622C58}';
-  CLASS_WorkflowDummyImpl: TGUID = '{7D4E0DFB-DB89-4D72-9D70-48F78DE447C2}';
   CLASS_WorkflowImpl: TGUID = '{A3D59A39-03FE-436A-88EC-EAD2ECF407D8}';
+  CLASS_WorkflowDummyImpl: TGUID = '{7D4E0DFB-DB89-4D72-9D70-48F78DE447C2}';
   DIID_IAppliedDiscount: TGUID = '{0C703C88-DDA1-4531-9FE8-13341FCCD4D7}';
   DIID_ICancelledOrderItem: TGUID = '{D5354BB7-8872-4B6A-81A2-EB589C59B304}';
   DIID_ILoyaltyOperation: TGUID = '{18D27725-489C-4AD3-866C-1BAAF7DD09EC}';
@@ -73,11 +72,13 @@ const
   DIID_IUserData: TGUID = '{9F322DCB-F4C1-45D3-A300-4855EDE6C5DC}';
   DIID_IWalletPayment: TGUID = '{D2DC8B0E-2501-41F9-8061-9CEFBAC1E6D4}';
   DIID_IWalletRefund: TGUID = '{DFCE4062-7498-4802-B1E7-A9131997BE17}';
-  DIID_IStartupParams: TGUID = '{2B3E93AD-CFB7-4AEA-81E0-D6D2D360FBE0}';
+  CLASS_StartupParams: TGUID = '{DEFC0114-8AB8-46C3-8E94-03444BF60736}';
   DIID_ICheckinResult: TGUID = '{73F1A661-AB59-4B55-A8FE-F417BE2C701C}';
   DIID_ICloseResult: TGUID = '{8B3B11AD-B2F7-428D-9B37-8EC581F6CE78}';
   DIID_IRefundResult: TGUID = '{E10DBDB6-473D-4DC9-921E-F45FCC3CF403}';
-  CLASS_StartupParams: TGUID = '{DEFC0114-8AB8-46C3-8E94-03444BF60736}';
+  DIID_INotification: TGUID = '{4B15F48D-D316-40FE-B6FE-93426ACB8DA8}';
+  DIID_INotificationCollection: TGUID = '{09D52E06-5CAA-4675-A911-E32F85C02FCD}';
+  DIID_IPaymentNotification: TGUID = '{EA3AF29E-E4CC-45C7-8000-45E8D65A0075}';
 
 // *********************************************************************//
 // Declaration of Enumerations defined in Type Library                    
@@ -105,9 +106,8 @@ type
 // *********************************************************************//
 // Forward declaration of types defined in TypeLibrary                    
 // *********************************************************************//
-  INotification = dispinterface;
-  INotificationCollection = dispinterface;
-  IPaymentNotification = dispinterface;
+  IStartupParams = dispinterface;
+  IBalanceInfo = dispinterface;
   IOrderPaymentsCollection = dispinterface;
   ILoyaltyOperationCollection = dispinterface;
   ILoyaltyProgramResultCollection = dispinterface;
@@ -128,57 +128,55 @@ type
   IUserData = dispinterface;
   IWalletPayment = dispinterface;
   IWalletRefund = dispinterface;
-  IStartupParams = dispinterface;
   ICheckinResult = dispinterface;
   ICloseResult = dispinterface;
   IRefundResult = dispinterface;
+  INotification = dispinterface;
+  INotificationCollection = dispinterface;
+  IPaymentNotification = dispinterface;
 
 // *********************************************************************//
 // Declaration of CoClasses defined in Type Library                       
 // (NOTE: Here we map each CoClass to its Default Interface)              
 // *********************************************************************//
-  WorkflowDummyImpl = IWorkflow;
   WorkflowImpl = IWorkflow;
+  WorkflowDummyImpl = IWorkflow;
   StartupParams = IStartupParams;
 
 
 // *********************************************************************//
-// DispIntf:  INotification
+// DispIntf:  IStartupParams
 // Flags:     (4096) Dispatchable
-// GUID:      {4B15F48D-D316-40FE-B6FE-93426ACB8DA8}
+// GUID:      {2B3E93AD-CFB7-4AEA-81E0-D6D2D360FBE0}
 // *********************************************************************//
-  INotification = dispinterface
-    ['{4B15F48D-D316-40FE-B6FE-93426ACB8DA8}']
-    property Id: WideString readonly dispid 0;
-    property OrderId: WideString readonly dispid 1;
-    property CreatedOn: TDateTime readonly dispid 2;
-    property NotificationType: Integer readonly dispid 3;
-    property UserData: IUserData readonly dispid 4;
-    property Message: WideString readonly dispid 5;
-    function AsPaymentNotification: IPaymentNotification; dispid 101;
+  IStartupParams = dispinterface
+    ['{2B3E93AD-CFB7-4AEA-81E0-D6D2D360FBE0}']
+    property Host: WideString dispid 0;
+    property Login: WideString dispid 1;
+    property Password: WideString dispid 2;
+    property SyncCallTimeoutSec: Integer dispid 3;
+    property AsyncCallWaitTimeoutSec: Integer dispid 4;
+    property UseCompression: WordBool dispid 5;
+    property Locale: WideString dispid 6;
+    property TapeWidth: Integer dispid 7;
+    property DataDir: WideString dispid 8;
+    property TerminalId: WideString dispid 9;
+    property Vendor: WideString dispid 10;
+    property Product: WideString dispid 11;
+    property ProductVersion: WideString dispid 12;
+    property PluginVersion: WideString dispid 13;
+    property UseXmlCheques: WordBool dispid 14;
   end;
 
 // *********************************************************************//
-// DispIntf:  INotificationCollection
+// DispIntf:  IBalanceInfo
 // Flags:     (4096) Dispatchable
-// GUID:      {09D52E06-5CAA-4675-A911-E32F85C02FCD}
+// GUID:      {A1EA775A-4DB9-4FF0-AA35-B56EB1EF40F5}
 // *********************************************************************//
-  INotificationCollection = dispinterface
-    ['{09D52E06-5CAA-4675-A911-E32F85C02FCD}']
-    property Count: Integer readonly dispid 0;
-    function Get(index: Integer): INotification; dispid 1;
-  end;
-
-// *********************************************************************//
-// DispIntf:  IPaymentNotification
-// Flags:     (4096) Dispatchable
-// GUID:      {EA3AF29E-E4CC-45C7-8000-45E8D65A0075}
-// *********************************************************************//
-  IPaymentNotification = dispinterface
-    ['{EA3AF29E-E4CC-45C7-8000-45E8D65A0075}']
-    property Payments: IWalletPaymentCollection readonly dispid 0;
-    property IsPaid: WordBool readonly dispid 1;
-    property SumToPay: Double readonly dispid 2;
+  IBalanceInfo = dispinterface
+    ['{A1EA775A-4DB9-4FF0-AA35-B56EB1EF40F5}']
+    property WalletCode: WalletCode dispid 0;
+    property Balance: Double dispid 1;
   end;
 
 // *********************************************************************//
@@ -257,18 +255,18 @@ type
     procedure UnInitialize; dispid 1000;
     function Checkin(const credential: WideString; searchScope: UserSearchScope; 
                      const order: IOrder; const limits: IParamsCollection): ICheckinResult; dispid 101;
-    procedure Pay(const OrderId: WideString; const transactionId: WideString; 
-                  const Payments: IParamsCollection; const discounts: IParamsCollection); dispid 102;
-    function Refund(const OrderId: WideString; const transactionId: WideString; 
+    procedure Pay(const orderId: WideString; const transactionId: WideString; 
+                  const payments: IParamsCollection; const discounts: IParamsCollection); dispid 102;
+    function Refund(const orderId: WideString; const transactionId: WideString; 
                     const refunds: IParamsCollection; const cancelledItems: IParamsCollection): IRefundResult; dispid 104;
-    function Close(const OrderId: WideString; sumForBonus: Double): ICloseResult; dispid 105;
-    procedure Abort(const OrderId: WideString); dispid 106;
-    procedure Reset(const OrderId: WideString); dispid 107;
+    function Close(const orderId: WideString; sumForBonus: Double): ICloseResult; dispid 105;
+    procedure Abort(const orderId: WideString); dispid 106;
+    procedure Reset(const orderId: WideString); dispid 107;
     function UpdateOrder(const order: IOrder; const limits: IParamsCollection): ICheckinResult; dispid 200;
     function Precheque(const order: IOrder; const limits: IParamsCollection): ICheckinResult; dispid 202;
     function GetPayments(const orderIds: IParamsCollection): IOrderPaymentsCollection; dispid 201;
     function GetNotifications(const orderIds: IParamsCollection): INotificationCollection; dispid 203;
-    procedure BindCardToPhone(const cardTrack: WideString; const phoneNumber: WideString); dispid 204;
+    procedure BindCardToPhone(const cardTrackOrNumber: WideString; const phoneNumber: WideString); dispid 204;
     procedure ActivateUserBinding(const activationCode: WideString); dispid 205;
     function CloseOrder(const order: IOrder; sumForBonus: Double): ICloseResult; dispid 206;
   end;
@@ -381,8 +379,8 @@ type
 // *********************************************************************//
   IOrderPayments = dispinterface
     ['{996A75C2-87A3-4D20-B89C-9DD7F1F7E61D}']
-    property OrderId: WideString readonly dispid 0;
-    property Payments: IWalletPaymentCollection readonly dispid 1;
+    property orderId: WideString readonly dispid 0;
+    property payments: IWalletPaymentCollection readonly dispid 1;
   end;
 
 // *********************************************************************//
@@ -455,30 +453,6 @@ type
   end;
 
 // *********************************************************************//
-// DispIntf:  IStartupParams
-// Flags:     (4096) Dispatchable
-// GUID:      {2B3E93AD-CFB7-4AEA-81E0-D6D2D360FBE0}
-// *********************************************************************//
-  IStartupParams = dispinterface
-    ['{2B3E93AD-CFB7-4AEA-81E0-D6D2D360FBE0}']
-    property Host: WideString dispid 0;
-    property Login: WideString dispid 1;
-    property Password: WideString dispid 2;
-    property SyncCallTimeoutSec: Integer dispid 3;
-    property AsyncCallWaitTimeoutSec: Integer dispid 4;
-    property UseCompression: WordBool dispid 5;
-    property Locale: WideString dispid 6;
-    property TapeWidth: Integer dispid 7;
-    property DataDir: WideString dispid 8;
-    property TerminalId: WideString dispid 9;
-    property Vendor: WideString dispid 10;
-    property Product: WideString dispid 11;
-    property ProductVersion: WideString dispid 12;
-    property PluginVersion: WideString dispid 13;
-    property UseXmlCheques: WordBool dispid 14;
-  end;
-
-// *********************************************************************//
 // DispIntf:  ICheckinResult
 // Flags:     (4096) Dispatchable
 // GUID:      {73F1A661-AB59-4B55-A8FE-F417BE2C701C}
@@ -488,7 +462,7 @@ type
     property UserData: IUserData readonly dispid 0;
     property LoyaltyResult: ILoyaltyResult readonly dispid 1;
     property PaymentLimits: IPaymentLimitCollection readonly dispid 2;
-    property Payments: IWalletPaymentCollection readonly dispid 3;
+    property payments: IWalletPaymentCollection readonly dispid 3;
     property ChequeFooter: WideString readonly dispid 4;
   end;
 
@@ -514,15 +488,42 @@ type
   end;
 
 // *********************************************************************//
-// The Class CoWorkflowDummyImpl provides a Create and CreateRemote method to          
-// create instances of the default interface IWorkflow exposed by              
-// the CoClass WorkflowDummyImpl. The functions are intended to be used by             
-// clients wishing to automate the CoClass objects exposed by the         
-// server of this typelibrary.                                            
+// DispIntf:  INotification
+// Flags:     (4096) Dispatchable
+// GUID:      {4B15F48D-D316-40FE-B6FE-93426ACB8DA8}
 // *********************************************************************//
-  CoWorkflowDummyImpl = class
-    class function Create: IWorkflow;
-    class function CreateRemote(const MachineName: string): IWorkflow;
+  INotification = dispinterface
+    ['{4B15F48D-D316-40FE-B6FE-93426ACB8DA8}']
+    property Id: WideString readonly dispid 0;
+    property orderId: WideString readonly dispid 1;
+    property CreatedOn: TDateTime readonly dispid 2;
+    property NotificationType: Integer readonly dispid 3;
+    property UserData: IUserData readonly dispid 4;
+    property Message: WideString readonly dispid 5;
+    function AsPaymentNotification: IPaymentNotification; dispid 101;
+  end;
+
+// *********************************************************************//
+// DispIntf:  INotificationCollection
+// Flags:     (4096) Dispatchable
+// GUID:      {09D52E06-5CAA-4675-A911-E32F85C02FCD}
+// *********************************************************************//
+  INotificationCollection = dispinterface
+    ['{09D52E06-5CAA-4675-A911-E32F85C02FCD}']
+    property Count: Integer readonly dispid 0;
+    function Get(index: Integer): INotification; dispid 1;
+  end;
+
+// *********************************************************************//
+// DispIntf:  IPaymentNotification
+// Flags:     (4096) Dispatchable
+// GUID:      {EA3AF29E-E4CC-45C7-8000-45E8D65A0075}
+// *********************************************************************//
+  IPaymentNotification = dispinterface
+    ['{EA3AF29E-E4CC-45C7-8000-45E8D65A0075}']
+    property payments: IWalletPaymentCollection readonly dispid 0;
+    property IsPaid: WordBool readonly dispid 1;
+    property SumToPay: Double readonly dispid 2;
   end;
 
 // *********************************************************************//
@@ -533,6 +534,18 @@ type
 // server of this typelibrary.                                            
 // *********************************************************************//
   CoWorkflowImpl = class
+    class function Create: IWorkflow;
+    class function CreateRemote(const MachineName: string): IWorkflow;
+  end;
+
+// *********************************************************************//
+// The Class CoWorkflowDummyImpl provides a Create and CreateRemote method to          
+// create instances of the default interface IWorkflow exposed by              
+// the CoClass WorkflowDummyImpl. The functions are intended to be used by             
+// clients wishing to automate the CoClass objects exposed by the         
+// server of this typelibrary.                                            
+// *********************************************************************//
+  CoWorkflowDummyImpl = class
     class function Create: IWorkflow;
     class function CreateRemote(const MachineName: string): IWorkflow;
   end;
@@ -553,16 +566,6 @@ implementation
 
 uses ComObj;
 
-class function CoWorkflowDummyImpl.Create: IWorkflow;
-begin
-  Result := CreateComObject(CLASS_WorkflowDummyImpl) as IWorkflow;
-end;
-
-class function CoWorkflowDummyImpl.CreateRemote(const MachineName: string): IWorkflow;
-begin
-  Result := CreateRemoteComObject(MachineName, CLASS_WorkflowDummyImpl) as IWorkflow;
-end;
-
 class function CoWorkflowImpl.Create: IWorkflow;
 begin
   Result := CreateComObject(CLASS_WorkflowImpl) as IWorkflow;
@@ -571,6 +574,16 @@ end;
 class function CoWorkflowImpl.CreateRemote(const MachineName: string): IWorkflow;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_WorkflowImpl) as IWorkflow;
+end;
+
+class function CoWorkflowDummyImpl.Create: IWorkflow;
+begin
+  Result := CreateComObject(CLASS_WorkflowDummyImpl) as IWorkflow;
+end;
+
+class function CoWorkflowDummyImpl.CreateRemote(const MachineName: string): IWorkflow;
+begin
+  Result := CreateRemoteComObject(MachineName, CLASS_WorkflowDummyImpl) as IWorkflow;
 end;
 
 class function CoStartupParams.Create: IStartupParams;

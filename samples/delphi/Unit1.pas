@@ -39,7 +39,7 @@ begin
   i_startupParams := CoStartupParams.Create();
   i_Flow := CoWorkflowImpl.Create();
 
-  i_startupParams.Host := 'http://www4.platius.ru:9010';
+  i_startupParams.Host := 'http://www7.plazius.ru:9010';
   i_startupParams.Login := '7796';
   i_startupParams.Password := '7796';
   i_startupParams.TerminalId := 'POS-1';
@@ -118,12 +118,14 @@ begin
       i_productLimit.ProductCode := '100100';
       i_productLimit.MaxBonusPayment := 100;
       i_productLimit.MaxDiscount := 100;
+      i_productLimit.IsFullAmountLimit := True;
       i_productLimits.Add(i_productLimit);
 
       i_productLimit := i_Flow.CreateProductLimit();
       i_productLimit.ProductCode := '200100';
       i_productLimit.MaxBonusPayment := 0;
       i_productLimit.MaxDiscount := 100;
+      i_productLimit.IsFullAmountLimit := True;
       i_productLimits.Add(i_productLimit);
 
       i_checkinResult := i_Flow.Checkin(userPhone, UserSearchScope_Phone, i_order, i_productLimits);
@@ -265,12 +267,14 @@ begin
       i_productLimit.ProductCode := '100100';
       i_productLimit.MaxBonusPayment := 100;
       i_productLimit.MaxDiscount := 100;
+      i_productLimit.IsFullAmountLimit := True;
       i_productLimits.Add(i_productLimit);
 
       i_productLimit := i_Flow.CreateProductLimit();
       i_productLimit.ProductCode := '200100';
       i_productLimit.MaxBonusPayment := 0;
       i_productLimit.MaxDiscount := 100;
+      i_productLimit.IsFullAmountLimit := True;
       i_productLimits.Add(i_productLimit);
 
       i_checkinResult := i_Flow.Precheque(i_order, i_productLimits);
