@@ -2,7 +2,6 @@
 using System.Reflection;
 using Platius.Service.Api.Common.Front.Data;
 using Platius.Service.Api.Front.v2.Client;
-using Platius.Service.Api.Front.v2.Client.Extensions;
 using Platius.Service.Api.Front.v2.Data;
 
 namespace Client
@@ -19,10 +18,13 @@ namespace Client
                 Password = "1714",
                 SyncCallTimeoutSec = 15*60,
                 UseCompression = true,
-                TerminalId = "1",
-                Vendor = "Platius",
-                Product = "C# Test client",
-                ProductVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString(),
+                TerminalInfo = new TerminalInfo()
+                {
+                    TerminalId = "1",
+                    Product = "C# Test client" ,
+                    Vendor = "Platius",
+                    ProductVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString()
+                },
                 PluginVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString()
             };
 
@@ -44,7 +46,7 @@ namespace Client
                 ProductName = "Чай",
                 Amount = 1,
                 Sum = 50,
-                SumAfterDiscount = 25
+                SumAfterDiscount = 25,
             };
 
             var order = new Order
@@ -54,7 +56,8 @@ namespace Client
                 WaiterName = "Петров Сергей",
                 Sum = item1.Sum + item2.Sum,
                 SumAfterDiscount = item1.SumAfterDiscount + item2.SumAfterDiscount,
-                Items = new[] {item1, item2}
+                Items = new[] {item1, item2},
+                OpenTime = DateTimeOffset.Now
             };
 
             const string credential = "555444";
@@ -62,6 +65,7 @@ namespace Client
             try
             {
                 var result = flow.Checkin(credential, UserSearchScope.CardNumber, order, null);
+                Console.WriteLine(result);
             }
             catch (Exception ex)
             {
