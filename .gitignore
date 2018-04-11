@@ -5,6 +5,7 @@ samples/**/*.exe
 # visual studio
 samples/**/bin/
 obj/
+packages/
 *.suo
 *.user
 *.vsmdi

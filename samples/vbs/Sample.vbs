@@ -10,11 +10,9 @@ startupParams.SyncCallTimeoutSec = 15
 startupParams.AsyncCallWaitTimeoutSec = 3
 startupParams.Locale = "ru-Ru"
 startupParams.UseCompression = True
-startupParams.TerminalId = "<TerminalId>"
-startupParams.Vendor = "<VendorName>"
-startupParams.Product = "<ProductName>"
-startupParams.ProductVersion = "<ProductVersion>"
 startupParams.PluginVersion = "<ProductVersion>"
+Call startupParams.SetTerminalInfo("TerminalId", "VendorName", "ProductName", "ProductVersion", "ru-RU", 50)
+
 
 Dim flow
 Set flow = CreateObject("Platius.Service.Api.Front.v2.Client.Extensions.Workflow")
@@ -28,6 +26,7 @@ MsgBox (order.Id)
 order.Number = "444"
 order.Sum = 621.2
 order.SumAfterDiscount = 610.6
+Call order.SetOpenTime(Now)
 
 Dim item1
 Set item1 = flow.CreateOrderItem()
