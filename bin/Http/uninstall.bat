@@ -1,0 +1,1 @@
+c:\WINDOWS\Microsoft.NET\Framework\v4.0.30319\installutil /u Pos.Api.v2.Wrapper.Service.Host.exe

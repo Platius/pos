@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\Microsoft SDKs\Windows\v8.1A\bin\NETFX 4.5.1 Tools\tlbexp.exe" Pos.Api.v2.Wrapper.Client.dll /out:Pos.Api.v2.Wrapper.Client.tlb /verbose
