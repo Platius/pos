@@ -1,0 +1,39 @@
+{
+  "AuthUri": "http://plazius.ru:9010/api/session",
+  "PosApiV2Uri": "http://plazius.ru:9010",
+  //"SettingsApiUri": "http://localhost.fiddler:9060",
+  "OfflineApiUri": "http://plazius.ru/api/sync/v1",
+  "WebAppUri": "https://app.plazius.ru/",
+  "JobConfigurations": {
+    "ExpiredOrdersCleanerJob": {
+      "JobInterval": "24:00:00",
+      "DoWorkAtStartup": true,
+      "OrdersExpirationTime": "30.00:00:00"
+    },
+    "CompressLogJob": {
+      "JobInterval": "12:00:00",
+      "DoWorkAtStartup": false
+    },
+    "GetFastNotificationsJob": {
+      "JobInterval": "00:00:10",
+      "DoWorkAtStartup": false
+    },
+    "SendMetricsJob": {
+      "JobInterval": "00:02:00",
+      "DoWorkAtStartup": false
+    },
+    "ReservePromocodeJob": {
+      "JobInterval": "00:01:00",
+      "PromocodesPoolSize": 150,
+      "DoWorkAtStartup": false
+    },
+    "SyncSettingsJob": {
+      "JobInterval": "00:10:00",
+      "DoWorkAtStartup": false
+    },
+    "HttpPingJob": {
+      "JobInterval": "00:00:10",
+      "DoWorkAtStartup": false
+    }
+  }
+}

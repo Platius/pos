@@ -1,0 +1,97 @@
+﻿{
+  "DbFileName": "rPOS.db",
+
+  "ExternalId": "0001",
+  "Pin": "0001",
+
+  "UseXmlCheques": false,
+  //"UseSpecialRKeeperDialect - включает диалект р-кипера, с игнорированием Reset посылок после любой ошибки, в течении RkeeperDenyResetTimeout "
+  "UseSpecialRKeeperDialect": true,
+  "RkeeperDenyResetTimeout": "00:00:02",
+  "PromocodeTtl": "00:00:10",
+  //"PreferFastAnonymous - включает режим Fast, с быстрыми анонимными чеками."
+  "PreferFastAnonymous": false,
+  //"Текст подвала, в случае если пропала связь"
+  "OfflineFailedPrechequeText": "ПО ТЕХНИЧЕСКИМ ПРИЧИНАМ \r\nбонусные баллы будут начислены \r\nвам позднее. \r\n\r\nВведите промокод в приложении Plazius: \r\n{PromoCode} \r\n\r\nВы всегда можете обратиться в \r\nслужбу поддержки, отправив фото чека \r\nпо адресу: support@plazius.ru",
+  "ConnectionSettings": {
+
+    "AuthUri": "http://plazius.ru:9010/api/session",
+    "PosApiV2Uri": "http://plazius.ru:9010",
+    "PosApiV2ApiSubPath": "api/front/v2",
+    "PosApiV2PingSubPath": "api",
+    "SettingsApiUri": "http://plazius.ru:9060",
+    "OfflineApiUri": "http://plazius.ru/api/sync/v1",
+    "TsupApiUri": "https://plazius.ru/api/tsup/v1/",
+    //"Часть урла для печати QR. Не используется в сетевом взаимодействии"
+    "WebAppUri": "https://app.plazius.ru/",
+    //"Максимальное время ЛЮБОГО http запроса"
+    "AsyncRequestTimeout": "00:00:20",
+    //"Максимальное время выполнения операции"
+    "SyncRequestTimeout": "00:00:05",
+    //"Максимальное время выполнения платежной операции"
+    "PaymentSyncRequestTimeout": "00:00:07"
+  },
+  "OrganizationDefaultSettings": {
+    //"Отладочная. Не обращайте внимания"
+    "Mode": "Hybrid",
+    //"Включить режим оффлайнера"
+    "AllowLocalPayments": false,
+    "BonusPaymentFooterTemplate": "Спасибо что выбрали Plazius\r\nПроверяйте своё приложение\r\nИ кто знает - может быть скоро\r\nвы получите немного бонусов",
+
+    //"PromocodeFooterTemplate - Подвал анонимного чека для режимов Fast и Offliner"
+    "PromocodeFooterTemplate": "Это код платиуса! Введите его на сайте app.plazius.ru и получите бонусы и всякие разные подарки.\r\n[1]********************\r\n[1]{PromoCode} \r\n\r\n{PromoQRCode} \r\n",
+
+    //"Настройки оффлайнера"
+
+    "AllowPayWithBonusesOnCashDiscount": false,
+    "AllowPaymentWithoutPhoto": true,
+    "MaximumBonusPercent": 0.6,
+    "MinimumLocalPaymentBonusThreshold": 100,
+    "MinimumCashPayment": 1,
+
+    "AnonymousFooterTemplate": "Зайдите на\r\nwww.plazius.ru\r\nи получайте скидки.",
+    "GuestDataTtl": "365.00:00:00",
+    "LastFullSyncTimestamp": "2018-10-25T14:54:35.1522048+03:00"
+  },
+  //"Дополнительные пути для поиска FC-логов"
+  "FarcardsLogPaths": [
+    "D:\\TestLogosos_1\\Logosos_1\\logs",
+    "C:\\PlaziusTools\\Farcards.Plazius\\Logs",
+    "C:\\UCS\\Farcards.Plazius\\Logs",
+    "D:\\UCS\\Farcards.Plazius\\Logs",
+    "C:\\UCS\\Farcards.Plazius\\Farcards.Plazius\\Logs",
+    "C:\\datakrat\\Farcards.Plazius\\Logs"
+  ],
+  "JobConfigurations": {
+    "ExpiredOrdersCleanerJob": {
+      "JobInterval": "24:00:00",
+      "DoWorkAtStartup": true,
+      "OrdersExpirationTime": "30.00:00:00"
+    },
+    "CompressLogJob": {
+      "JobInterval": "12:00:00",
+      "DoWorkAtStartup": false
+    },
+    "GetFastNotificationsJob": {
+      "JobInterval": "00:00:10",
+      "DoWorkAtStartup": false
+    },
+    "SendMetricsJob": {
+      "JobInterval": "00:02:00",
+      "DoWorkAtStartup": false
+    },
+    "ReservePromocodeJob": {
+      "JobInterval": "00:01:00",
+      "PromocodesPoolSize": 150,
+      "DoWorkAtStartup": false
+    },
+    "SyncSettingsJob": {
+      "JobInterval": "00:10:00",
+      "DoWorkAtStartup": false
+    },
+    "HttpPingJob": {
+      "JobInterval": "00:00:10",
+      "DoWorkAtStartup": false
+    }
+  }
+}

@@ -1,0 +1,1 @@
+c:\WINDOWS\Microsoft.NET\Framework\v4.0.30319\installutil Agents.Pos.Rpos.App.exe
