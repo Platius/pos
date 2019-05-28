@@ -1,0 +1,108 @@
+﻿{
+  // Имя файла iPos_ExternalId.db ( например, iPos_8203.db )
+  "DbFileName": "client.db",
+  "ConnectionSettings": {
+    "MaxRequestTimeout": "00:00:20",
+    "AuthUri": "http://plazius.ru:9010/api/session",
+    "OfflineApiUri": "https://plazius.ru/api/pos/sync/guests/v1",
+    "SettingsApiUri": "https://plazius.ru",
+    "WebAppUri": "https://app.plazius.ru/",
+    "PosApiV1Uri": "https://plazius.ru:9004",
+    "PosApiV2Uri": "http://plazius.ru:9010",
+    "PosApiV2ApiSubPath": "api/front/v2",
+    "PosApiV2PingSubPath": "api",
+    "TsupApiUri": "https://plazius.ru/api/tsup/v1/"
+  },
+
+  // Поменять для конкретной точки
+  "ExternalId": "0001",
+  // Поменять для конкретной точки
+  "Password": "0001",
+  "PossibleLogPath": "\\iiko\\CashServer\\logs",
+
+  "OrganizationDefaultSettings": {
+    "Mode": "Hybrid",
+    "AllowLocalPayments": false,
+    "BonusPaymentFooterTemplate": "Спасибо что выбрали Plazius\r\nПроверяйте своё приложение\r\nИ кто знает - может быть скоро\r\nвы получите немного бонусов",
+    "PromocodeFooterTemplate": "Это код плазиуса! Введите его на сайте app.plazius.ru и получите бонусы и всякие разные подарки.\r\n[1]********************\r\n[1]{PromoCode} \r\n\r\n{PromoQRCode} \r\n",
+
+    "AllowPayWithBonusesOnCashDiscount": false,
+    "AllowPaymentWithoutPhoto": true,
+    "MaximumBonusPercent": 0.6,
+    "MinimumLocalPaymentBonusThreshold": 100,
+    "MinimumCashPayment": 1,
+
+    "AnonymousFooterTemplate": "Зайдите на\r\nwww.plazius.ru\r\nи получайте скидки.",
+    "GuestDataTtl": "365.00:00:00",
+    "LastFullSyncTimestamp": "2018-10-25T14:54:35.1522048+03:00"
+  },
+
+  "GuestsMocks": [
+    {
+      "LoginEntryId": "a2087b02-d251-4af1-9511-420064c4bfbf",
+      "PhoneHash": "+71111111111",
+      "CardNumber": "1111111111111111",
+      "Name": "Екатерина Шваркина",
+      "BonusBalance": 1000,
+      "HasPhoto": true,
+      "Gender": 2,
+      "Birthday": "1975-02-03T00:00:00",
+      "FullOrdersSum": 12345,
+      "Updated": "2018-10-25T00:00:00+03:00",
+      "IsRemoved": "false"
+    },
+    {
+      "LoginEntryId": "4c3255e8-f4ac-472e-87ef-1407d3e6596d",
+      "PhoneHash": "+72222222222",
+      "CardNumber": "2222222222222222",
+      "Name": "Эмануил Макрон",
+      "BonusBalance": 100,
+      "HasPhoto": false,
+      "Sex": 1,
+      "Birthday": "1978-07-05T00:00:00",
+      "FullOrdersSum": 0,
+      "Updated": "2018-10-24T14:54:35.166715+03:00",
+      "IsRemoved": "false"
+    }
+  ],
+  "JobConfigurations": {
+    "ExpiredOrdersCleanerJob": {
+      "JobInterval": "24:00:00",
+      "DoWorkAtStartup": true,
+      "OrdersExpirationTime": "30.00:00:00"
+    },
+    "LargeGuestSyncronizationJob": {
+      "JobInterval": "00:00:30",
+      "DoWorkAtStartup": false
+    },
+    "SmallGuestSyncronizationJob": {
+      "JobInterval": "00:00:10",
+      "DoWorkAtStartup": false
+    },
+    "SendMetricsJob": {
+      "JobInterval": "00:01:00",
+      "DoWorkAtStartup": false
+    },
+    "ReservePromocodeJob": {
+      "JobInterval": "00:00:10",
+      "PromocodesPoolSize": 50,
+      "DoWorkAtStartup": false
+    },
+    "SyncSettingsJob": {
+      "JobInterval": "00:05:00",
+      "DoWorkAtStartup": false
+    },
+    "WcfPingJob": {
+      "JobInterval": "00:00:10",
+      "DoWorkAtStartup": false
+    },
+    "HttpPingJob": {
+      "JobInterval": "00:00:10",
+      "DoWorkAtStartup": false
+    },
+    "GetNotificationsJob": {
+      "JobInterval": "00:00:07",
+      "DoWorkAtStartup": false
+    }
+  }
+}
